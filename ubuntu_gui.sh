@@ -120,7 +120,7 @@ function software() {
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     log 2 "4.2.4 加载zsh配置文件"
-    cd ~ && wget https://raw.githubusercontent.com/montenoki/setup_debian/main/.zshrc -O .zshrc
+    cd ~ && wget https://raw.githubusercontent.com/montenoki/auto_setup/main/.zshrc -O .zshrc
     log 1 "4.3 tmux"
     log 2 "4.3.1 配置tmux插件"
     mkdir ~/.tmux && mkdir ~/.tmux/plugins
@@ -128,7 +128,7 @@ function software() {
     git clone https://github.com/tmux-plugins/tmux-resurrect.git
     git clone https://github.com/tmux-plugins/tmux-continuum.git
     log 2 "4.3.2 加载tmux配置文件"
-    cd ~ && wget https://raw.githubusercontent.com/montenoki/setup_debian/main/.tmux.conf -O .tmux.conf
+    cd ~ && wget https://raw.githubusercontent.com/montenoki/auto_setup/main/.tmux.conf -O .tmux.conf
     log 1 "4.4 pyenv"
     log 2 "4.4.1 安装本体"
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv
