@@ -87,7 +87,27 @@ function install_pyenv() {
     check_dir ~/.pyenv/plugins/pyenv-virtualenv && git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
 }
 function install_vim() {
-    echo "?"
+    sudo apt install -y vim
+    check_dir ~/.vim && cd ~/.vim
+    git clone https://github.com/montenoki/vim-init.git
+    touch ~/.vimrc
+    echo "source ~/.vim/vim-init/init.vim" > ~/.vimrc
+}
+function install_vscode() {
+    aria2c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -d ~/Downloads
+    sudo apt install ~/Downloads/google-chrome-stable_current_amd64.deb
+}
+function install_i3wm() {
+
+    # sudo touch /etc/apt/sources.list.d/duinsoft.list
+    # echo 'deb http://www.duinsoft.nl/pkg debs all' | sudo tee -a /etc/apt/sources.list.d/duinsoft.list
+    cd ~/Downloads
+    /usr/lib/apt/apt-helper download-file https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2020.02.03_all.deb keyring.deb SHA256:c5dd35231930e3c8d6a9d9539c846023fe1a08e4b073ef0d2833acd815d80d48
+    sudo dpkg -i ./keyring.deb
+    sudo touch /etc/apt/sources.list.d/sur5r-i3.list
+    echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" | sudo tee -a /etc/apt/sources.list.d/sur5r-i3.list
+    sudo apt update
+    sudo apt install i3
 }
 function install_python_softwares() {
     export PYENV_ROOT="$HOME/.pyenv"
@@ -96,6 +116,16 @@ function install_python_softwares() {
     pyenv global 3.9.1
     python -m pip install --upgrade pip
     pip install you-get thefuck
+}
+function i3wm_hidpi() {
+    touch ~/.Xresources
+    echo "Xft.dpi 210" > ~/.Xresources
+    touch ~/.xinitrc
+    echo "xrdb -merge ~/.Xresources" > ~/.xinitrc
+    echo "exec i3" > ~/.xinitrc
+    touch ~/.xprofile
+    echo "xrandr --output <Display> --mode 2560x1440 --dpi 210" > ~/.xprofile
+    echo "export GDK_DPI_SCALE=0.75"
 }
 ################################################################################
 #                                 Sub process                                  #
@@ -128,7 +158,7 @@ function home_config() {
     ln -s /tmp ~
 }
 function software_install() {
-    sudo apt install -y bat curl aria2
+    sudo apt install -y bat curl aria2 terminator
     sudo apt install -y clang cmake gcc g++ make build-essential
     sudo apt install -y python3-pip autojump
     sudo apt install -y fonts-powerline
@@ -138,6 +168,8 @@ function software_install() {
     install_tmux
     install_pyenv
     install_vim
+    install_vscode
+    install_i3wm
     install_python_softwares
 }
 function fonts_config() {
@@ -182,8 +214,18 @@ function default_process {
     software_install
     fonts_config
     software_del
+    system_update
     cleanup
     press_any_key_to_continue
+}
+function update_config_process {
+    install_vim
+    install_tmux
+    cd ~ && wget https://raw.githubusercontent.com/montenoki/auto_setup/main/.zshrc -O .zshrc
+
+}
+function test_process {
+    install_i3wm
 }
 
 function menu {
@@ -194,6 +236,8 @@ function menu {
     echo -e "\t1. Install Chinese character display"
     echo -e "\t2. 自定义设置"
     echo -e "\t3. 开始执行(默认设置)"
+    echo -e "\t4. 更新配置"
+    echo -e "\t5. 测试新功能"
     echo -e "\t0. 退出(Exit)\n\n"
     echo -en "\t\t输入选择:"
     read -n 1 option
@@ -211,6 +255,10 @@ do
         custom_process ;;
         3)
         default_process ;;
+        4)
+        update_config_process ;;
+        5)
+        test_process ;;
         *)
         clear
         echo "输入错误, 请重新选择";;
