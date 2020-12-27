@@ -94,6 +94,12 @@ function install_vim() {
     echo "source ~/.vim/vim-init/init.vim" > ~/.vimrc
 }
 function install_vscode() {
+	echo "1"
+	aria2c "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" -d ~/Downloads -o vscode_installer.deb
+	echo "2"
+	sudo apt install ~/Downloads/vscode_installer.deb
+}
+function install_chrome() {
     aria2c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -d ~/Downloads
     sudo apt install ~/Downloads/google-chrome-stable_current_amd64.deb
 }
@@ -108,6 +114,8 @@ function install_i3wm() {
     echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" | sudo tee -a /etc/apt/sources.list.d/sur5r-i3.list
     sudo apt update
     sudo apt install i3
+	check_dir ~/.config/i3
+	# aria2c "" -d ~/.config/i3 -o config
 }
 function install_python_softwares() {
     export PYENV_ROOT="$HOME/.pyenv"
@@ -118,14 +126,9 @@ function install_python_softwares() {
     pip install you-get thefuck
 }
 function i3wm_hidpi() {
-    touch ~/.Xresources
-    echo "Xft.dpi 210" > ~/.Xresources
-    touch ~/.xinitrc
-    echo "xrdb -merge ~/.Xresources" > ~/.xinitrc
-    echo "exec i3" > ~/.xinitrc
     touch ~/.xprofile
     echo "xrandr --output <Display> --mode 2560x1440 --dpi 210" > ~/.xprofile
-    echo "export GDK_DPI_SCALE=0.75"
+    echo "export GDK_DPI_SCALE=1.5"
 }
 ################################################################################
 #                                 Sub process                                  #
@@ -168,6 +171,7 @@ function software_install() {
     install_tmux
     install_pyenv
     install_vim
+    install_chrome
     install_vscode
     install_i3wm
     install_python_softwares
@@ -222,10 +226,10 @@ function update_config_process {
     install_vim
     install_tmux
     cd ~ && wget https://raw.githubusercontent.com/montenoki/auto_setup/main/.zshrc -O .zshrc
-
+	# aria2c "" -d ~/.config/i3 -o config
 }
 function test_process {
-    install_i3wm
+    install_vscode
 }
 
 function menu {
