@@ -115,7 +115,9 @@ function install_i3wm() {
     sudo apt update
     sudo apt install i3
 	check_dir ~/.config/i3
-	# aria2c "" -d ~/.config/i3 -o config
+	aria2c "https://raw.githubusercontent.com/montenoki/auto_setup/main/i3wm.conf" -d ~/.config/i3 -o config
+    aria2c "https://raw.githubusercontent.com/montenoki/auto_setup/main/i3status.conf" -d ~/.config/i3 -o i3status.conf
+    aria2c "https://raw.githubusercontent.com/montenoki/auto_setup/main/i3block.conf" -d ~/.config/i3 -o i3block.conf
 }
 function install_python_softwares() {
     export PYENV_ROOT="$HOME/.pyenv"
@@ -226,7 +228,10 @@ function update_config_process {
     install_vim
     install_tmux
     cd ~ && wget https://raw.githubusercontent.com/montenoki/auto_setup/main/.zshrc -O .zshrc
-	# aria2c "" -d ~/.config/i3 -o config
+	aria2c "https://raw.githubusercontent.com/montenoki/auto_setup/main/i3wm.conf" -d ~/.config/i3 -o config
+    aria2c "https://raw.githubusercontent.com/montenoki/auto_setup/main/i3status.conf" -d ~/.config/i3 -o i3status.conf
+    aria2c "https://raw.githubusercontent.com/montenoki/auto_setup/main/i3block.conf" -d ~/.config/i3 -o i3block.conf
+
 }
 function test_process {
     install_vscode
