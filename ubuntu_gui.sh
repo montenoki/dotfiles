@@ -118,6 +118,18 @@ function install_i3wm() {
 	aria2c "https://raw.githubusercontent.com/montenoki/auto_setup/main/i3wm.conf" -d ~/.config/i3 -o config
     aria2c "https://raw.githubusercontent.com/montenoki/auto_setup/main/i3status.conf" -d ~/.config/i3 -o i3status.conf
     aria2c "https://raw.githubusercontent.com/montenoki/auto_setup/main/i3block.conf" -d ~/.config/i3 -o i3block.conf
+    sudo mkdir -p /etc/X11/xorg.conf.d
+    sudo touch /etc/X11/xorg.conf.d/90-touchpad.conf
+    echo "Section \"InputClass\"" | sudo tee -a /etc/X11/xorg.conf.d/90-touchpad.conf
+    echo "        Identifier \"touchpad\"" | sudo tee -a /etc/X11/xorg.conf.d/90-touchpad.conf
+    echo "        MatchIsTouchpad \"on\"" | sudo tee -a /etc/X11/xorg.conf.d/90-touchpad.conf
+    echo "        Driver \"libinput\"" | sudo tee -a /etc/X11/xorg.conf.d/90-touchpad.conf
+    echo "        Option \"Tapping\" \"on\"" | sudo tee -a /etc/X11/xorg.conf.d/90-touchpad.conf
+    echo "        Option \"TappingButtonMap\" \"lrm\"" | sudo tee -a /etc/X11/xorg.conf.d/90-touchpad.conf
+    echo "        Option \"NaturalScrolling\" \"on\"" | sudo tee -a /etc/X11/xorg.conf.d/90-touchpad.conf
+    echo "        Option \"ScrollMethod\" \"twofinger\"" | sudo tee -a /etc/X11/xorg.conf.d/90-touchpad.conf
+    echo "EndSection" | sudo tee -a /etc/X11/xorg.conf.d/90-touchpad.conf
+
 }
 function install_python_softwares() {
     export PYENV_ROOT="$HOME/.pyenv"
@@ -234,7 +246,7 @@ function update_config_process {
 
 }
 function test_process {
-    install_vscode
+    install_i3wm
 }
 
 function menu {
