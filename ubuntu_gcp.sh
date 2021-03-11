@@ -7,7 +7,7 @@ sudo apt install curl git zsh bat python3-pip -y
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 chsh -s /bin/zsh
 
-cd ~ && wget https://raw.githubusercontent.com/montenoki/auto_setup/main/.zshrc -O .zshrc
+cd ~ && wget https://raw.githubusercontent.com/montenoki/auto_setup/main/.zshrc_gcp -O .zshrc
 
 python3 -m pip install --upgrade pip
 
