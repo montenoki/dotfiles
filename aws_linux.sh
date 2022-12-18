@@ -23,15 +23,28 @@ pyenv global 3.11.1
 
 # ====================
 # 安装Neo Vim
-# 参考：https://gist.github.com/kawaz/393c7f62fe6e857cc3d9
+# 参考：https://gorm.dev/install-neovim-on-amazon-linux-2
 # ====================
-sudo yum groups install -y Development\ tools
-sudo yum install -y cmake
-sudo pip install neovim --upgrade
-(
+sudo yum -y install gcc-c++
+wget https://cmake.org/files/v3.10/cmake-3.10.0.tar.gz
+tar -xvzf cmake-3.10.0.tar.gz
+cd cmake-3.10.0
+# I be Bootstrappin'
+./bootstrap
+# make the thing
+make
+# make all the things
+sudo make install
+
+sudo pip-3.7 install neovim --upgrade
 cd "$(mktemp -d)"
 git clone https://github.com/neovim/neovim.git
 cd neovim
+
+# This shit takes forever
 make CMAKE_BUILD_TYPE=Release
-sudo make install
-)
+
+# This takes even longer
+# The things I do for a decent text editing experience
+# F in chat
+make install
