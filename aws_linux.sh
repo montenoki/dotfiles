@@ -25,7 +25,7 @@ pyenv global 3.11.1
 # 安装Neo Vim
 # 参考：https://gorm.dev/install-neovim-on-amazon-linux-2
 # ====================
-sudo yum -y install gcc-c++
+sudo yum -y install gcc-c++ libtool
 wget https://cmake.org/files/v3.10/cmake-3.10.0.tar.gz
 tar -xvzf cmake-3.10.0.tar.gz
 cd cmake-3.10.0
