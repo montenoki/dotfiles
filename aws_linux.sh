@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo yum install git
+sudo yum install -y git
 # ====================
 # 安装pyenv
 # 参考：https://blog.serverworks.co.jp/install-python3-with-openssl11
