@@ -59,7 +59,7 @@ pacman -Syu --noconfirm
 #                      Creat New User                      #
 ############################################################
 
-if [ $enable_create_user -eq 1]; then
+if [ $enable_create_user -eq 1 ]; then
 	echo "New User creating..."
 	useradd -m -G wheel -s /bin/bash $user_name
 	(
@@ -96,11 +96,11 @@ chsh /home/$user_name/.cargo/bin/nu
 EOF
 fi
 
-if [ $enable_starship -eq 1]; then
+if [ $enable_starship -eq 1 ]; then
 	echo "Starship ..."
 	curl https://starship.rs/install.sh | sh -s -- -y
 	sed -e 'eval "$(starship init bash)"' ~/.bashrc
-	if [ $enable_nushell -eq 1]; then
+	if [ $enable_nushell -eq 1 ]; then
 		sudo -u $user_name sh <<EOF
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
