@@ -30,6 +30,16 @@ read -p "Do you wish to install Nushell (y/n)?" -a yn
 case $yn in
 [Yy]*)
 	enable_nushell=1
+    read -P "Do you wishi to set Nushell as default (y/n)?" -a yn2
+    case $yn2 in
+        [Yy]*)
+            enable_nushell_as_def=1
+            ;;
+        [N]*)
+            enable_nushell_as_def=0
+            ;;
+        *) exit ;;
+    esac
 	;;
 [Nn]*)
 	enable_nushell=0
@@ -78,7 +88,7 @@ echo "Software Installing..."
 
 ########################################
 
-pacman -S git bat bottom du fd gitui lsd ripgrep sd tealdeer zoxide --noconfirm
+pacman -S ssh git bat bottom du fd gitui lsd ripgrep sd tealdeer zoxide --noconfirm
 
 ########################################
 echo "Cargo ..."
@@ -89,7 +99,7 @@ EOF
 if [ "$enable_nushell" -eq 1 ]; then
 	echo "Nushell ..."
 	sudo -u $user_name sh <<EOF
-source "$HOME/.cargo/env"
+source "/home/$user_name/.cargo/env"
 cargo install nu --features=dataframe
 sed -e "/home/$user_name/.cargo/bin/nu" /etc/shells
 chsh /home/$user_name/.cargo/bin/nu
