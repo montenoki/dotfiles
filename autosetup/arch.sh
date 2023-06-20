@@ -17,11 +17,11 @@ case $yn in
 		echo "Exit autosetup script..."
 		exit 1
 	fi
-	$enable_create_user=true
+	enable_create_user=true
 	;;
 [Nn]*)
 	read -p "Enter a current user name for installation:" -a user_name
-	$enable_create_user=false
+	enable_create_user=false
 	;;
 *) exit ;;
 esac
@@ -29,10 +29,10 @@ esac
 read -p "Do you wish to install Nushell (y/n)?" -a yn
 case $yn in
 [Yy]*)
-	$enable_nushell=true
+	enable_nushell=true
 	;;
 [Nn]*)
-	$enable_nushell=false
+	enable_nushell=false
 	;;
 *) exit ;;
 esac
@@ -40,10 +40,10 @@ esac
 read -p "Do you wish to install Starship (y/n)?" -a yn
 case $yn in
 [Yy]*)
-	$enable_starship=true
+	enable_starship=true
 	;;
 [Nn]*)
-	$enable_starship=false
+	enable_starship=false
 	;;
 *) exit ;;
 esac
