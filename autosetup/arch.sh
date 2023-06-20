@@ -99,7 +99,7 @@ fi
 if [ $enable_starship=true ]; then
 	echo "Starship ..."
 	sudo -u $user_name sh <<EOF
-curl https://starship.rs/install.sh | sh
+curl https://starship.rs/install.sh | sh -s -- -y
 sed -e 'eval "$(starship init bash)"' ~/.bashrc
 EOF
 	if [ $enable_nushell=true ]; then
