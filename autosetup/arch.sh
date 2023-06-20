@@ -35,7 +35,7 @@ case $yn in
         [Yy]*)
             enable_nushell_as_def=1
             ;;
-        [N]*)
+        [Nn]*)
             enable_nushell_as_def=0
             ;;
         *) exit ;;
@@ -59,13 +59,6 @@ case $yn in
 esac
 
 ############################################################
-#                      Update System                       #
-############################################################
-
-echo "System Updating..."
-pacman -Syu --noconfirm
-
-############################################################
 #                      Creat New User                      #
 ############################################################
 
@@ -81,6 +74,13 @@ if [ "$enable_create_user" -eq 1 ]; then
 fi
 
 ############################################################
+#                      Update System                       #
+############################################################
+
+echo "System Updating..."
+pacman -Syu --noconfirm
+
+############################################################
 #                  Software Installations                  #
 ############################################################
 
@@ -89,6 +89,12 @@ echo "Software Installing..."
 ########################################
 
 pacman -S ssh git bat bottom du fd gitui lsd ripgrep sd tealdeer zoxide --noconfirm
+
+pacman -S --needed base-devel
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+cd ..
 
 ########################################
 echo "Cargo ..."
@@ -101,7 +107,7 @@ if [ "$enable_nushell" -eq 1 ]; then
 	sudo -u $user_name sh <<EOF
 source "/home/$user_name/.cargo/env"
 cargo install nu --features=dataframe
-sed -e "/home/$user_name/.cargo/bin/nu" /etc/shells
+sed -i -e '$a'"/home/$user_name/.cargo/bin/nu" /etc/shells
 chsh /home/$user_name/.cargo/bin/nu
 EOF
 fi
@@ -109,12 +115,12 @@ fi
 if [ "$enable_starship" -eq 1 ]; then
 	echo "Starship ..."
 	curl https://starship.rs/install.sh | sh -s -- -y
-	sed -e 'eval "$(starship init bash)"' ~/.bashrc
+	sed -i -e '$aeval "$(starship init bash)"' ~/.bashrc
 	if [ "$enable_nushell" -eq 1 ]; then
 		sudo -u $user_name sh <<EOF
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
-sed -e 'source ~/.cache/starship/init.nu' $nu.config-path
+sed -i -e '$asource ~/.cache/starship/init.nu' $nu.config-path
 EOF
 	fi
 fi
