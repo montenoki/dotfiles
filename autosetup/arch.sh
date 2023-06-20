@@ -4,27 +4,25 @@
 #                      User Interface                      #
 ############################################################
 
-while true; do
-    read -p  "Do you wish to create a new user (y/n/c)?" -a yn
-    case $yn in
-	[Yy]* )
-		read -p "Enter new user name:" user_name
-		echo "Enter new passwd for $user_name:"
-		read -s user_passwd
-		echo "Retype new passwd:"
-		read -s user_passwd_confirm
-		if [ $user_passwd != $user_passwd_confirm ]; then
-			echo "Sorry, passwords do not match."
-			echo "Exit autosetup script..."
-			exit 1
-		fi
-		;;
-	[Nn]* )
-		read -p "Enter a current user name for installation:" -a user_name
-		;;
-    *) exit;;
-	esac
-done
+read -p  "Do you wish to create a new user (y/n/c)?" -a yn
+case $yn in
+[Yy]* )
+    read -p "Enter new user name:" user_name
+    echo "Enter new passwd for $user_name:"
+    read -s user_passwd
+    echo "Retype new passwd:"
+    read -s user_passwd_confirm
+    if [ $user_passwd != $user_passwd_confirm ]; then
+        echo "Sorry, passwords do not match."
+        echo "Exit autosetup script..."
+        exit 1
+    fi
+    ;;
+[Nn]* )
+    read -p "Enter a current user name for installation:" -a user_name
+    ;;
+*) exit;;
+esac
 
 echo "Do you wish to install Nushell (y/n)?"
 select yn in "y" "n"; do
