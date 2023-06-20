@@ -4,7 +4,7 @@
 #                      User Interface                      #
 ############################################################
 
-read -p  "Do you wish to create a new user (y/n/c)?" -a yn
+read -p  "Do you wish to create a new user (y/n)?" -a yn
 case $yn in
 [Yy]* )
     read -p "Enter new user name:" user_name
@@ -24,17 +24,16 @@ case $yn in
 *) exit;;
 esac
 
-echo "Do you wish to install Nushell (y/n)?"
-select yn in "y" "n"; do
-	case $yn in
-	Yes | yes | Y | y)
-		$enable_nushell=true
+read -p "Do you wish to install Nushell (y/n)?" -a yn
+case $yn in
+    [Yy]*)
+        $enable_nushell=true
 		;;
-	No | no | N | n)
-		$enable_=false
+	[Nn]*)
+		$enable_nushell=false
 		;;
-	esac
-done
+    *) exit;;
+esac
 
 ############################################################
 #                      Update System                       #
