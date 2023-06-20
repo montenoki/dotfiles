@@ -12,7 +12,7 @@ case $yn in
 	read -s user_passwd
 	echo "Retype new passwd:"
 	read -s user_passwd_confirm
-	if [ $user_passwd != $user_passwd_confirm ] then
+	if [ "$user_passwd" != "$user_passwd_confirm" ] then
 		echo "Sorry, passwords do not match."
 		echo "Exit autosetup script..."
 		exit 1
@@ -59,7 +59,8 @@ pacman -Syu --noconfirm
 #                      Creat New User                      #
 ############################################################
 
-if [ $enable_create_user -eq 1 ] then
+if [ "$enable_create_user" -eq 1 ]
+then
 	echo "New User creating..."
 	useradd -m -G wheel -s /bin/bash $user_name
 	(
@@ -86,7 +87,7 @@ sudo -u $user_name sh <<EOF
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 EOF
 
-if [ $enable_nushell -eq 1 ] then
+if [ "$enable_nushell" -eq 1 ] then
 	echo "Nushell ..."
 	sudo -u $user_name sh <<EOF
 source "$HOME/.cargo/env"
@@ -96,11 +97,11 @@ chsh /home/$user_name/.cargo/bin/nu
 EOF
 fi
 
-if [ $enable_starship -eq 1 ] then
+if [ "$enable_starship" -eq 1 ] then
 	echo "Starship ..."
 	curl https://starship.rs/install.sh | sh -s -- -y
 	sed -e 'eval "$(starship init bash)"' ~/.bashrc
-	if [ $enable_nushell -eq 1 ] then
+	if [ "$enable_nushell" -eq 1 ] then
 		sudo -u $user_name sh <<EOF
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
