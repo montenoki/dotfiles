@@ -70,6 +70,7 @@ pacman -S git bat bottom du fd gitui lsd ripgrep sd tealdeer zoxide --noconfirm
 echo "Cargo ..."
 sudo -u $user_name sh <<EOF
 curl https://sh.rustup.rs -sSf | sh -s -- -y
+source "$HOME/.cargo/env"
 EOF
 
 if [ $enable_nushell=true ]; then
