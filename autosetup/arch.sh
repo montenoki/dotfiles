@@ -17,11 +17,11 @@ case $yn in
 		echo "Exit autosetup script..."
 		exit 1
 	fi
-	enable_create_user=true
+	enable_create_user=1
 	;;
 [Nn]*)
 	read -p "Enter a current user name for installation:" -a user_name
-	enable_create_user=false
+	enable_create_user=0
 	;;
 *) exit ;;
 esac
@@ -29,10 +29,10 @@ esac
 read -p "Do you wish to install Nushell (y/n)?" -a yn
 case $yn in
 [Yy]*)
-	enable_nushell=true
+	enable_nushell=1
 	;;
 [Nn]*)
-	enable_nushell=false
+	enable_nushell=0
 	;;
 *) exit ;;
 esac
@@ -40,10 +40,10 @@ esac
 read -p "Do you wish to install Starship (y/n)?" -a yn
 case $yn in
 [Yy]*)
-	enable_starship=true
+	enable_starship=1
 	;;
 [Nn]*)
-	enable_starship=false
+	enable_starship=0
 	;;
 *) exit ;;
 esac
@@ -59,7 +59,7 @@ pacman -Syu --noconfirm
 #                      Creat New User                      #
 ############################################################
 
-if [ $enable_create_user=true ]; then
+if [ $enable_create_user -eq 1]; then
 	echo "New User creating..."
 	useradd -m -G wheel -s /bin/bash $user_name
 	(
@@ -86,7 +86,7 @@ sudo -u $user_name sh <<EOF
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 EOF
 
-if [ $enable_nushell=true ]; then
+if [ $enable_nushell -eq 1 ]; then
 	echo "Nushell ..."
 	sudo -u $user_name sh <<EOF
 source "$HOME/.cargo/env"
@@ -96,13 +96,11 @@ chsh /home/$user_name/.cargo/bin/nu
 EOF
 fi
 
-if [ $enable_starship=true ]; then
+if [ $enable_starship -eq 1]; then
 	echo "Starship ..."
-	sudo -u $user_name sh <<EOF
-curl https://starship.rs/install.sh | sh -s -- -y
-sed -e 'eval "$(starship init bash)"' ~/.bashrc
-EOF
-	if [ $enable_nushell=true ]; then
+	curl https://starship.rs/install.sh | sh -s -- -y
+	sed -e 'eval "$(starship init bash)"' ~/.bashrc
+	if [ $enable_nushell -eq 1]; then
 		sudo -u $user_name sh <<EOF
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
