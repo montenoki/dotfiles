@@ -28,7 +28,7 @@ pacman -Syu --noconfirm
 ############################################################
 
 echo "New User creating..."
-wheel附加组可sudo, 以root用户执行命令; -m同时创建$HOME
+# wheel附加组可sudo, 以root用户执行命令; -m同时创建$HOME
 useradd -m -G wheel -s /bin/bash $user_name
 (
     echo $user_passwd_confirm
