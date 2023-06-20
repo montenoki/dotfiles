@@ -30,7 +30,7 @@ read -p "Do you wish to install Nushell (y/n)?" -a yn
 case $yn in
 [Yy]*)
 	enable_nushell=1
-    read -P "Do you wishi to set Nushell as default (y/n)?" -a yn2
+    read -p "Do you wishi to set Nushell as default (y/n)?" -a yn2
     case $yn2 in
         [Yy]*)
             enable_nushell_as_def=1
