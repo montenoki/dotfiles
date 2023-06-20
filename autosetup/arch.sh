@@ -4,10 +4,10 @@
 #                      User Interface                      #
 ############################################################
 
-echo "Do you wish to create a new user (y/n)?"
-select yn in "y" "n"; do
-	case $yn in
-	Yes | yes | Y | y)
+while true; do
+    read -p  "Do you wish to create a new user (y/n/c)?" -a yn
+    case $yn in
+	[Yy]* )
 		read -p "Enter new user name:" user_name
 		echo "Enter new passwd for $user_name:"
 		read -s user_passwd
@@ -19,9 +19,10 @@ select yn in "y" "n"; do
 			exit 1
 		fi
 		;;
-	No | no | N | n)
-		read -p "Enter a current user name for installation:" user_name
+	[Nn]* )
+		read -p "Enter a current user name for installation:" -a user_name
 		;;
+    *) exit;;
 	esac
 done
 
