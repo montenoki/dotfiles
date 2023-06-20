@@ -30,16 +30,16 @@ read -p "Do you wish to install Nushell (y/n)?" -a yn
 case $yn in
 [Yy]*)
 	enable_nushell=1
-    read -p "Do you wishi to set Nushell as default (y/n)?" -a yn2
-    case $yn2 in
-        [Yy]*)
-            enable_nushell_as_def=1
-            ;;
-        [Nn]*)
-            enable_nushell_as_def=0
-            ;;
-        *) exit ;;
-    esac
+	read -p "Do you wishi to set Nushell as default (y/n)?" -a yn2
+	case $yn2 in
+	[Yy]*)
+		enable_nushell_as_def=1
+		;;
+	[Nn]*)
+		enable_nushell_as_def=0
+		;;
+	*) exit ;;
+	esac
 	;;
 [Nn]*)
 	enable_nushell=0
@@ -107,21 +107,25 @@ if [ "$enable_nushell" -eq 1 ]; then
 	sudo -u $user_name sh <<EOF
 source "/home/$user_name/.cargo/env"
 cargo install nu --features=dataframe
-echo '$a'"/home/$user_name/.cargo/bin/nu"
-sed -i -e '$a'"/home/$user_name/.cargo/bin/nu" /etc/shells
+echo '$ a '"/home/$user_name/.cargo/bin/nu"
+EOF
+	sed -i -e '$ a '"/home/$user_name/.cargo/bin/nu" /etc/shells
+	if [ "$enable_nushell_as_def" -eq 1 ]; then
+		sudo -u $username sh <<EOF
 chsh /home/$user_name/.cargo/bin/nu
 EOF
+	fi
 fi
 
 if [ "$enable_starship" -eq 1 ]; then
 	echo "Starship ..."
 	curl https://starship.rs/install.sh | sh -s -- -y
-	sed -i -e '$aeval "$(starship init bash)"' ~/.bashrc
+	sed -i -e '$ a eval "$(starship init bash)"' ~/.bashrc
 	if [ "$enable_nushell" -eq 1 ]; then
 		sudo -u $user_name sh <<EOF
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
-sed -i -e '$asource ~/.cache/starship/init.nu' $nu.config-path
+sed -i -e '$ a source ~/.cache/starship/init.nu' $nu.config-path
 EOF
 	fi
 fi
