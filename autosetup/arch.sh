@@ -44,6 +44,8 @@ sed -e 's/^#\s\(%wheel\s\+ALL=(ALL:ALL)\s\+ALL\)/\1/' /etc/sudoers | EDITOR=tee 
 
 echo "Software Installing..."
 
-sudo -u $user_name curl https://sh.rustup.rs -sSf | sudo -u $user_name sh -s -- --y
+sudo -u $user_name sh << EOF
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+EOF
 # pacman -S git
 
