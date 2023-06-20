@@ -107,6 +107,7 @@ if [ "$enable_nushell" -eq 1 ]; then
 	sudo -u $user_name sh <<EOF
 source "/home/$user_name/.cargo/env"
 cargo install nu --features=dataframe
+echo '$a'"/home/$user_name/.cargo/bin/nu"
 sed -i -e '$a'"/home/$user_name/.cargo/bin/nu" /etc/shells
 chsh /home/$user_name/.cargo/bin/nu
 EOF
