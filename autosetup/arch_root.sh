@@ -60,14 +60,16 @@ echo "System Updating..."
 pacman -Syyu --noconfirm
 
 ############################################################
-#                  Software Installations                  #
+#                      Installations                       #
 ############################################################
 
-echo "Base Installing..."
+echo "Installing..."
 
 pacman -S --needed base-devel zlib xz tk --noconfirm
-pacman -S openssh openssl git python python-pip --noconfirm
-pacman -S neovim bat bottom dust fd gitui lsd ripgrep sd tealdeer zoxide --noconfirm
+pacman -S openssh openssl git python python-pip go nodejs npm --noconfirm
+pacman -S bat bottom dust fd  lsd ripgrep sd tealdeer zoxide --noconfirm
+pacman -S wget --noconfirm
+pacman -S neovim gitui --noconfirm
 
 echo "Cargo Installing..."
 curl https://sh.rustup.rs -sSf | sh -s -- -y
@@ -81,3 +83,4 @@ echo "Software Setup..."
 systemctl enable sshd
 systemctl start sshd
 
+curl https://raw.githubusercontent.com/montenoki/dotfiles/main/autosetup/arch_user.sh | sudo -u $user_name sh
