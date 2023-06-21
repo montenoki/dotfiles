@@ -17,7 +17,7 @@ mkdir -p ~/.config/systemd/user/
 mkdir -p ~/.ssh/authorized_keys
 cp ~/repo/dotfiles/dotfiles/ssh-agent.service ~/.config/systemd/user/ssh-agent.service
 echo 'export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"' >> ~/.bashrc
-echo 'ssh-add ~/.ssh/ed25519.key' >> ~/.bashrc
+echo 'ssh-add -k ~/.ssh/ed25519.key' >> ~/.bashrc
 
 echo "Setup ~/.bashrc ..."
 
