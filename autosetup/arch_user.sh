@@ -1,14 +1,56 @@
 echo "Download dotfiles project"
 git clone https://github.com/montenoki/dotfiles.git ~/repo/dotfiles
 
+
+read -p "Continue (y/n)?" -a yn
+case $yn in
+[Yy]*)
+	;;
+[Nn]*)
+    exit
+	;;
+*) exit ;;
+esac
+
 echo "Install pyenv ..."
 curl https://pyenv.run | bash
+
+read -p "Continue (y/n)?" -a yn
+case $yn in
+[Yy]*)
+	;;
+[Nn]*)
+    exit
+	;;
+*) exit ;;
+esac
+
+
+read -p "Continue (y/n)?" -a yn
+case $yn in
+[Yy]*)
+	;;
+[Nn]*)
+    exit
+	;;
+*) exit ;;
+esac
 
 echo "Install paru ..."
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -ci --noconfirm
 cd ..
+
+read -p "Continue (y/n)?" -a yn
+case $yn in
+[Yy]*)
+	;;
+[Nn]*)
+    exit
+	;;
+*) exit ;;
+esac
 
 echo "Setup SSH ..."
 mkdir ~/.ssh/
@@ -83,7 +125,7 @@ fi
 
 if command -v starship &> /dev/null
 then
-    echo 'eval "\$(starship init bash)"' >> ~/.bashrc
+    echo 'eval "$(starship init bash)"' >> ~/.bashrc
 else
     echo "starship could not be found"
 fi
