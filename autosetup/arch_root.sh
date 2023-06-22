@@ -52,65 +52,19 @@ if [ "$enable_create_user" -eq 1 ]; then
 	sed -e 's/^#\s\(%wheel\s\+ALL=(ALL:ALL)\s\+ALL\)/\1/' /etc/sudoers | EDITOR=tee visudo >/dev/null
 fi
 
-read -p "Continue (y/n)?" -a yn
-case $yn in
-[Yy]*)
-	;;
-[Nn]*)
-    exit
-	;;
-*) exit ;;
-esac
 ############################################################
-#                      Update System                       #
+#                      Installations                       #
 ############################################################
 
 echo "System Updating..."
 pacman -Syyu --noconfirm
 
-read -p "Continue (y/n)?" -a yn
-case $yn in
-[Yy]*)
-	;;
-[Nn]*)
-    exit
-	;;
-*) exit ;;
-esac
-############################################################
-#                      Installations                       #
-############################################################
-
 echo "Installing..."
-
 pacman -S --needed base-devel zlib xz tk --noconfirm
 pacman -S openssh openssl git python python-pip go nodejs npm --noconfirm
 pacman -S bat bottom dust fd  lsd ripgrep sd tealdeer zoxide --noconfirm
 pacman -S wget --noconfirm
 pacman -S neovim gitui --noconfirm
-
-read -p "Continue (y/n)?" -a yn
-case $yn in
-[Yy]*)
-	;;
-[Nn]*)
-    exit
-	;;
-*) exit ;;
-esac
-
-echo "Cargo Installing..."
-curl https://sh.rustup.rs -sSf | sh -s -- -y
-
-read -p "Continue (y/n)?" -a yn
-case $yn in
-[Yy]*)
-	;;
-[Nn]*)
-    exit
-	;;
-*) exit ;;
-esac
 
 if [ "$enable_starship" -eq 1 ]; then
 	echo "Starship ..."
@@ -120,15 +74,3 @@ fi
 echo "Software Setup..."
 systemctl enable sshd
 systemctl start sshd
-
-read -p "Continue (y/n)?" -a yn
-case $yn in
-[Yy]*)
-	;;
-[Nn]*)
-    exit
-	;;
-*) exit ;;
-esac
-
-curl https://raw.githubusercontent.com/montenoki/dotfiles/main/autosetup/arch_user.sh | sudo -u $user_name sh
