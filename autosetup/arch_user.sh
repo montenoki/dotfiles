@@ -23,7 +23,14 @@ cp ~/repo/dotfiles/dotfiles/ssh-agent.service ~/.config/systemd/user/ssh-agent.s
 systemctl --user enable ssh-agent.service
 systemctl --user start ssh-agent.service
 echo 'export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"' >> ~/.bashrc
-echo 'ssh-add -k ~/.ssh/ed25519.key' >> ~/.bashrc
+echo 'eval $(ssh-agent)' >> ~/.bashrc
+echo 'for k in ~/.ssh/ed25519.key' >> ~/.bashrc
+echo 'do' >> ~/.bashrc
+echo '    if ! ssh-add -l | grep -q "$(ssh-keygen -lf "$k" | cut -d' ' -f 2)"' >> ~/.bashrc
+echo '    then' >> ~/.bashrc
+echo '        ssh-add"$k"' >> ~/.bashrc
+echo '    fi' >> ~/.bashrc
+echo 'done' >> ~/.bashrc
 
 echo "Setup ~/.bashrc ..."
 
