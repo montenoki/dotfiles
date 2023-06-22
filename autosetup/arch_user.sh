@@ -1,5 +1,5 @@
 echo "Download dotfiles project"
-git clone https://github.com/montenoki/dotfiles.git ~/repo/dotfiles
+git clone git@github.com:montenoki/dotfiles.git ~/repo/dotfiles
 
 echo "Install pyenv ..."
 curl https://pyenv.run | bash
@@ -102,7 +102,7 @@ fi
 
 if command -v nvim &> /dev/null
 then
-    git clone https://github.com/montenoki/nvim.git ~/.config/nvim
+    git clone git@github.com:montenoki/nvim.git ~/.config/nvim
     mkdir ~/.virtualenvs/
     python -m venv ~/.virtualenvs/neovim
     python -m venv ~/.virtualenvs/debugpy
