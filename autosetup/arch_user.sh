@@ -11,7 +11,7 @@ source "$HOME/.cargo/env"
 echo "Install paru ..."
 git clone https://aur.archlinux.org/paru.git
 cd paru
-makepkg -ci --noconfirm
+makepkg -sic --noconfirm
 cd ..
 
 echo "Setup SSH ..."
@@ -20,6 +20,8 @@ ssh-keygen -t ed25519 -N "" -f ~/.ssh/ed25519.key
 mkdir -p ~/.config/systemd/user/
 mkdir -p ~/.ssh/authorized_keys
 cp ~/repo/dotfiles/dotfiles/ssh-agent.service ~/.config/systemd/user/ssh-agent.service
+systemctl --user enable ssh-agent.service
+systemctl --user start ssh-agent.service
 echo 'export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"' >> ~/.bashrc
 echo 'ssh-add -k ~/.ssh/ed25519.key' >> ~/.bashrc
 

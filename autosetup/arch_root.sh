@@ -63,7 +63,7 @@ echo "Installing..."
 pacman -S --needed base-devel zlib xz tk --noconfirm
 pacman -S openssh openssl git python python-pip go nodejs npm --noconfirm
 pacman -S bat bottom dust fd  lsd ripgrep sd tealdeer zoxide --noconfirm
-pacman -S wget --noconfirm
+pacman -S wget rustup --noconfirm
 pacman -S neovim gitui --noconfirm
 
 if [ "$enable_starship" -eq 1 ]; then
