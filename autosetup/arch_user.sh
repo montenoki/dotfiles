@@ -1,5 +1,5 @@
 echo "Download dotfiles project"
-git clone git@github.com:montenoki/dotfiles.git ~/repo/dotfiles
+git clone https://github.com/montenoki/dotfiles.git ~/temp/dotfiles
 
 echo "Install pyenv ..."
 curl https://pyenv.run | bash
@@ -8,15 +8,15 @@ echo "Cargo Installing..."
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 source "$HOME/.cargo/env"
 
-echo "Install paru ..."
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -sic --noconfirm
-cd ..
+# echo "Install paru ..."
+# git clone https://aur.archlinux.org/paru.git ~/temp/paru
+# cd ~/temp/paru
+# makepkg -sic --noconfirm
+# cd ~
 
 echo "Setup SSH ..."
 mkdir ~/.ssh/
-ssh-keygen -t ed25519 -N "" -f ~/.ssh/ed25519.key
+ssh-keygen -t ed25519 -N "" -f ~/.ssh/id_rsa
 mkdir -p ~/.config/systemd/user/
 mkdir -p ~/.ssh/authorized_keys
 cp ~/repo/dotfiles/dotfiles/ssh-agent.service ~/.config/systemd/user/ssh-agent.service
@@ -24,7 +24,7 @@ systemctl --user enable ssh-agent.service
 systemctl --user start ssh-agent.service
 echo 'export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"' >> ~/.bashrc
 echo 'eval $(ssh-agent)' >> ~/.bashrc
-echo 'for k in ~/.ssh/ed25519.key' >> ~/.bashrc
+echo 'for k in ~/.ssh/id_rsa' >> ~/.bashrc
 echo 'do' >> ~/.bashrc
 echo '    if ! ssh-add -l | grep -q "$(ssh-keygen -lf "$k" | cut -d' ' -f 2)"' >> ~/.bashrc
 echo '    then' >> ~/.bashrc
@@ -110,6 +110,9 @@ then
     ~/.virtualenvs/debugpy/bin/python -m pip install --upgrade pip
     ~/.virtualenvs/neovim/bin/python -m pip install neovim
     ~/.virtualenvs/debugpy/bin/python -m pip install debugpy
+    cd ~/.config/nvim
+    git remote set-url origin git@github.com:montenoki/nvim.git
+    cd ~
 else
     echo "nvim could not be found"
 fi
