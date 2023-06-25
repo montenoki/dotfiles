@@ -8,12 +8,6 @@ echo "Cargo Installing..."
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 source "$HOME/.cargo/env"
 
-# echo "Install paru ..."
-# git clone https://aur.archlinux.org/paru.git ~/temp/paru
-# cd ~/temp/paru
-# makepkg -sic --noconfirm
-# cd ~
-
 echo "Setup SSH ..."
 mkdir ~/.ssh/
 ssh-keygen -t ed25519 -N "" -f ~/.ssh/id_rsa
@@ -102,7 +96,7 @@ fi
 
 if command -v nvim &> /dev/null
 then
-    git clone git@github.com:montenoki/nvim.git ~/.config/nvim
+    git clone https://github.com/montenoki/nvim.git ~/.config/nvim
     mkdir ~/.virtualenvs/
     python -m venv ~/.virtualenvs/neovim
     python -m venv ~/.virtualenvs/debugpy
@@ -116,3 +110,10 @@ then
 else
     echo "nvim could not be found"
 fi
+
+echo "Install paru ..."
+git clone https://aur.archlinux.org/paru.git ~/temp/paru
+cd ~/temp/paru
+makepkg -sic --noconfirm
+cd ~
+
