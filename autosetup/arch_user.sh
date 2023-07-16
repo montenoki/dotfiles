@@ -20,7 +20,7 @@ echo 'export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"' >> ~/.bashrc
 echo 'eval $(ssh-agent)' >> ~/.bashrc
 echo 'for k in ~/.ssh/id_rsa' >> ~/.bashrc
 echo 'do' >> ~/.bashrc
-echo '    if ! ssh-add -l | grep -q "$(ssh-keygen -lf "$k" | cut -d' ' -f 2)"' >> ~/.bashrc
+echo '    if ! ssh-add -l | grep -q "$(ssh-keygen -lf "$k" | cut -d '\\ ' -f 2)"' >> ~/.bashrc
 echo '    then' >> ~/.bashrc
 echo '        ssh-add"$k"' >> ~/.bashrc
 echo '    fi' >> ~/.bashrc
