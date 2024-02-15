@@ -1,12 +1,11 @@
 #
-alias ls='ls --color=auto'
+alias ls='lsd -a'
+alias tree='lsd --tree'
 alias grep='grep --color=auto'
 alias cat=bat
 alias top=btm
 alias du=dust
 alias find=fd
-alias ls=lsd
-alias tree='lsd --tree'
 alias sed=sd
 
 eval $(ssh-agent)
