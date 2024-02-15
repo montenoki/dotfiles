@@ -6,7 +6,7 @@ This directory contain the dotfiles for my system.
 
 Ensure you have the following installed on your system.
 
-### Git
+### stow
 
 ```bash
 brew install stow
