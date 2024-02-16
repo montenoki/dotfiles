@@ -22,12 +22,13 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# Use Tmux only if current term program is WezTerm
-if [ "$TERM_PROGRAM" = 'WezTerm' ]; then
-  tmux has -t work &> /dev/null
+# Use Tmux automatically base on term program
+session="work"
+if [ "$TERM" = 'alacritty' ]; then
+  tmux has -t $session &> /dev/null
   if [ $? != 0 ]; then
-    tmux new -s work
+    tmux new -s $session
   elif [ -z $TMUX ]; then
-    tmux attach -t work
+    tmux attach -t $session
   fi
 fi
