@@ -4,6 +4,3 @@
 [submodule ".config/nvim"]
 	path = .config/nvim
 	url = git@github.com:montenoki/nvim.git
-[submodule ".tmux/plugins/tpm"]
-	path = .tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm.git
