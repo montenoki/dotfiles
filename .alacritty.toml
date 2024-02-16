@@ -1,0 +1,18 @@
+[window]
+decorations = 'Buttonless'
+
+[window.dimensions]
+columns = 90
+lines = 40
+
+[font]
+size = 16
+[font.normal]
+family = 'FiraCode Nerd Font'
+style = 'Regular'
+[font.bold]
+family = 'FiraCode Nerd Font'
+style = 'bold'
+[font.italic]
+family = 'FiraCode Nerd Font'
+style = 'italic'
