@@ -2,11 +2,11 @@
 decorations = 'Buttonless'
 
 [window.dimensions]
-columns = 120
+columns = 100
 lines = 40
 
 [font]
-size = 16
+size = 15
 [font.normal]
 family = 'FiraCode Nerd Font'
 style = 'Regular'
