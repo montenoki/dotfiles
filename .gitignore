@@ -1,0 +1,4 @@
+.tmux/
+.config/gitui
+.config/neofetch
+.config/raycast
