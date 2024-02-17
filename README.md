@@ -23,8 +23,7 @@ brew install stow tmux neovim
 First, check out the dotfiles repo in your $HOME directory using git.
 
 ```bash
-git clone git@github.com:montenoki/dotfiles.git ~
-cd ~/dotfiles
+git clone git@github.com:montenoki/dotfiles.git ~/dotfiles && cd ~/dotfiles
 ```
 
 Then use the GNU stow to create symlinks.
