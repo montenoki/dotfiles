@@ -13,6 +13,3 @@ style = 'Regular'
 [font.bold]
 family = 'FiraCode Nerd Font'
 style = 'bold'
-[font.italic]
-family = 'FiraCode Nerd Font'
-style = 'italic'
