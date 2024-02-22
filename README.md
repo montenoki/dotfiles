@@ -1,45 +1,65 @@
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD033 -->
+
 # dotfiles
 
-This directory contain the dotfiles for my system.
+Dotfiles for my system.
 
 ## Requirements
 
-Ensure you have the following installed on your system.
+<details closed>
 
-- coreutils(mac)
+<summary>
+  Ensure you have the following installed on your system.
+</summary>
 
-- stow
+- **coreutils** (mac): GNU File, Shell, and Text utilities
 
-- tmux
+- **stow**: Organize software neatly under a single directory tree (e.g. /usr/local)
 
-- neovim
+- **tmux**: Terminal multiplexer
 
-- lsd
+- **neovim**: Ambitious Vim-fork focused on extensibility and agility
 
-- bat
+- **lsd**: Clone of ls with colorful output, file type icons, and more
 
-- btm
+- **bat**: Clone of cat(1) with syntax highlighting and Git integration
 
-- dust
+- **bottom**: Yet another cross-platform graphical process/system monitor
 
-- fd
+- **dust**: More intuitive version of du in rust
 
-- sd
+- **fd**: Simple, fast and user-friendly alternative to find
 
-- zoxide
+- **sd**: Intuitive find & replace CLI
+
+- **zoxide**: Shell extension to navigate your filesystem faster
+
+</details>
+
+### Mac
 
 ```bash
-brew install stow tmux neovim
+brew install lsd bat bottom dust fd sd zoxide coreutils stow tmux neovim
 ```
 
 ## Installation
 
-### setup dotfiles
+### Setup dotfiles
 
 First, check out the dotfiles repo in your $HOME directory using git.
 
+#### ssh
+
 ```bash
-git clone git@github.com:montenoki/dotfiles.git ~/dotfiles && cd ~/dotfiles
+git clone -- recursive git@github.com:montenoki/dotfiles.git ~/dotfiles && cd ~/dotfiles
+```
+
+#### http
+
+```bash
+git clone -- recursive https://github.com/montenoki/dotfiles.git ~/dotfiles && cd ~/dotfiles
 ```
 
 Then use the GNU stow to create symlinks.
@@ -48,6 +68,10 @@ Then use the GNU stow to create symlinks.
 stow --adopt .
 ```
 
-### tmux
+### Setup tmux (option)
 
-Go tmux and Press "prefix + I" to install tmux plugins.
+Run tmux and Press "prefix + I" to install tmux plugins.
+
+### Setup neovim (option)
+
+Refer to my [Neovim configuration repo](https://github.com/montenoki/nvim).
