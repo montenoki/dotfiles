@@ -2,7 +2,7 @@
 decorations = 'Buttonless'
 
 [window.dimensions]
-columns = 100
+columns = 130
 lines = 40
 
 [font]
