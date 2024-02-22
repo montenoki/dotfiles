@@ -6,11 +6,27 @@ This directory contain the dotfiles for my system.
 
 Ensure you have the following installed on your system.
 
+- coreutils(mac)
+
 - stow
 
 - tmux
 
 - neovim
+
+- lsd
+
+- bat
+
+- btm
+
+- dust
+
+- fd
+
+- sd
+
+- zoxide
 
 ```bash
 brew install stow tmux neovim

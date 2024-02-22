@@ -1,34 +1,27 @@
-#
-alias ls='lsd -a'
-alias tree='lsd --tree'
-alias grep='grep --color=auto'
-alias cat=bat
-alias top=btm
-alias du=dust
-alias find=fd
-alias sed=sd
+# Take tike to measure boot time
+boot_time_start=$(gdate +%s%N 2>/dev/null || date +%s%N)
 
-# Add ssh-key
-eval $(ssh-agent)
-for k in ~/.ssh/id_ed25519; do
-	if ! ssh-add -l | grep -q "$(ssh-keygen -lf "$k" | cut -d \  -f 2)"; then
-		ssh-add "$k"
-	fi
-done
+# First include of the environment.
+source $HOME/.config/zsh/environment.zsh
 
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+typeset -ga sources
+sources+="$ZSH_CONFIG/environment.zsh"
+sources+="$ZSH_CONFIG/options.zsh"
+sources+="$ZSH_CONFIG/init.zsh"
+sources+="$ZSH_CONFIG/functions.zsh"
+sources+="$ZSH_CONFIG/aliases.zsh"
+sources+="$ZSH_CONFIG/autocmd.zsh"
 
-# Use Tmux automatically base on term program
-session="work"
-if [ "$TERM" = 'alacritty' ]; then
-  tmux has -t $session &> /dev/null
-  if [ $? != 0 ]; then
-    tmux new -s $session
-  elif [ -z $TMUX ]; then
-    tmux attach -t $session
-  fi
-fi
+# try to include all sources
+foreach file (`echo $sources`)
+    if [[ -a $file ]]; then
+      source_include_time_start=$(gdate +%s%N 2>/dev/null || date +%s%N)
+      source $file
+      source_include_duration=$((($(gdate +%s%N 2>/dev/null || date +%s%N) - $source_include_time_start)/1000000))
+      echo $source_include_duration ms runtime for $file
+    fi
+end
+
+boot_time_end=$(gdate +%s%N 2>/dev/null || date +%s%N)
+boot_time_duration=$((($boot_time_end - $boot_time_start) / 1000000))
+echo $boot_time_duration ms overall boot duration
