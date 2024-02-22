@@ -14,7 +14,6 @@ alias top="btm"
 alias tree="lsd --tree"
 alias vi="nvim"
 alias vim="nvim"
-alias z="zoxide"
 
 alias grep="grep --color=auto"
 
