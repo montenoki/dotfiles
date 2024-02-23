@@ -2,7 +2,7 @@
 proc_name=ssh-agent
 proc_count=`ps -ef |grep -w $proc_name|grep -v grep|wc -l`
 if [ $proc_count -le 0 ];then
-  eval $(ssh-agent -s)
+  eval `ssh-agent`
 else
    echo $proc_name is  running..
 fi
