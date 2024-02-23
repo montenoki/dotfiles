@@ -44,6 +44,12 @@ Dotfiles for my system.
 brew install lsd bat bottom dust fd sd zoxide coreutils stow tmux neovim
 ```
 
+### Arch
+
+```bash
+sudo pacman -S lsd bat bottom dust fd sd zoxide stow tmux neovim git
+```
+
 ## Installation
 
 ### Setup dotfiles
