@@ -52,6 +52,12 @@ sudo pacman -S lsd bat bottom dust fd sd zoxide stow tmux neovim git zsh
 
 ## Installation
 
+### Set ZSH as default shell (optional)
+
+```bash
+chsh -s $(which zsh)
+```
+
 ### Setup dotfiles
 
 First, check out the dotfiles repo in your $HOME directory using git.
