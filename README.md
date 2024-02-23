@@ -82,6 +82,12 @@ stow --adopt .
 
 ### Setup tmux (option)
 
+Clone tpm
+
+```bash
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
 Run tmux and Press "prefix + I" to install tmux plugins.
 
 ### Setup neovim (option)
