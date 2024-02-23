@@ -53,13 +53,13 @@ First, check out the dotfiles repo in your $HOME directory using git.
 #### ssh
 
 ```bash
-git clone -- recursive git@github.com:montenoki/dotfiles.git ~/dotfiles && cd ~/dotfiles
+git clone --recursive git@github.com:montenoki/dotfiles.git ~/dotfiles && cd ~/dotfiles
 ```
 
 #### http
 
 ```bash
-git clone -- recursive https://github.com/montenoki/dotfiles.git ~/dotfiles && cd ~/dotfiles
+git clone --recursive https://github.com/montenoki/dotfiles.git ~/dotfiles && cd ~/dotfiles
 ```
 
 Then use the GNU stow to create symlinks.
