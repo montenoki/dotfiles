@@ -1,6 +1,6 @@
 # If close the last tty then kill ssh-agent
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  other_tty_count=$(ps aux -o tty | grep `whoami` | grep tty | grep -v `tty | sed -E 's:/dev/::'` | grep -v grep | wc -l)
+  other_tty_count=$(ps aux | grep `whoami` | awk '{print $7}' | grep -v `tty | sed -E 's:/dev/tty::'` | grep -v \? | wc -l)  
 else
   other_tty_count=$(ps aux | grep `whoami` | awk '{print $7}' | grep -v `tty | sed -E 's:/dev/::'` | grep -v \? | wc -l)
 fi
