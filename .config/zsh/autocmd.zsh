@@ -14,3 +14,8 @@ for key in ~/.ssh/id_ed25519; do
     echo $key is exist.
 	fi
 done
+
+# Auto run neofetch
+if [[ -x `which neofetch` ]]; then
+  eval "neofetch"
+fi
