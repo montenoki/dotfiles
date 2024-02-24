@@ -36,6 +36,8 @@ Dotfiles for my system.
 
 - **zoxide**: Shell extension to navigate your filesystem faster
 
+- **zsh**: UNIX shell (command interpreter)
+
 </details>
 
 ### Mac
@@ -80,7 +82,7 @@ Then use the GNU stow to create symlinks.
 stow --adopt .
 ```
 
-### Setup tmux (option)
+### Setup tmux (optional)
 
 Clone tpm
 
@@ -90,6 +92,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 Run tmux and Press "prefix + I" to install tmux plugins.
 
-### Setup neovim (option)
+### Setup neovim (optional)
 
 Refer to my [Neovim configuration repo](https://github.com/montenoki/nvim).
