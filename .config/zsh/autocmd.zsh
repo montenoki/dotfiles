@@ -1,12 +1,12 @@
-# Add ssh-key
+# Run ssh-agent
 proc_name=ssh-agent
-proc_count=`ps -ef |grep -w $proc_name|grep -v grep|wc -l`
-if [ $proc_count -le 0 ];then
-  eval `ssh-agent`
+proc_count=`ps aux | grep -w $proc_name | grep -v grep | wc -l`
+if [[ $proc_count -le 0 ]];then
+  eval $(`which $proc_name`)
 else
-  ps aux | grep ssh-agent | grep -v grep | awk '{print "kill -9 " $2}' | zsh
-  eval `ssh-agent`
+  echo $proc_name is running..
 fi
+# Add private key
 for key in ~/.ssh/id_ed25519; do
 	if ! ssh-add -l | grep -q "$(ssh-keygen -lf "$key" | cut -d \  -f 2)"; then
 		ssh-add "$key"
@@ -15,7 +15,10 @@ for key in ~/.ssh/id_ed25519; do
 	fi
 done
 
+echo '--------'
+
 # Auto run neofetch
-if [[ -x `which neofetch` ]]; then
+if [[ -x `which neofetch` ]] &&
+  [[ -z $VIM ]]; then # Not in Vim
   eval "neofetch"
 fi
