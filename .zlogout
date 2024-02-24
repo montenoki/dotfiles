@@ -5,5 +5,8 @@ else
   other_tty_count=$(ps aux | grep `whoami` | awk '{print $7}' | grep -v `tty | sed -E 's:/dev/::'` | grep -v \? | wc -l)
 fi
 if [[ $other_tty_count -le 0 ]]; then
+  ps aux | grep "ssh-agent" | grep -v grep | awk '{print "kill -9 " $2}'
   ps aux | grep "ssh-agent" | grep -v grep | awk '{print "kill -9 " $2}' | zsh
+  echo Kill ssh-agent
+  sleep 1
 fi
