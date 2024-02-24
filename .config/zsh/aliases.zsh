@@ -28,3 +28,5 @@ alias ....=' cd ..; cd ..; cd ..; ls'
 alias cd..='..'
 alias cd...='...'
 alias cd....='....'
+
+alias t="tmux new-session -A -s"
