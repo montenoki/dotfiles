@@ -19,6 +19,6 @@ echo '--------'
 
 # Auto run neofetch
 if [[ -x `which neofetch` ]] &&
-  [[ -z $VIM ]]; then # Not in Vim
+  [[ -z $VIMRUNTIME ]]; then # Not in Vim
   eval "neofetch"
 fi
