@@ -22,6 +22,8 @@ Dotfiles for my system.
 
 - **neovim**: Ambitious Vim-fork focused on extensibility and agility
 
+- **neofetch**: Fast, highly customisable system info script
+
 - **lsd**: Clone of ls with colorful output, file type icons, and more
 
 - **bat**: Clone of cat(1) with syntax highlighting and Git integration
@@ -34,6 +36,8 @@ Dotfiles for my system.
 
 - **sd**: Intuitive find & replace CLI
 
+- **starship**: Cross-shell prompt for astronauts
+
 - **zoxide**: Shell extension to navigate your filesystem faster
 
 - **zsh**: UNIX shell (command interpreter)
@@ -43,13 +47,13 @@ Dotfiles for my system.
 ### Mac
 
 ```bash
-brew install lsd bat bottom dust fd sd zoxide coreutils stow tmux neovim
+brew install lsd bat bottom dust fd sd zoxide coreutils stow tmux neovim neofetch starship
 ```
 
 ### Arch
 
 ```bash
-sudo pacman -S lsd bat bottom dust fd sd zoxide stow tmux neovim git zsh
+sudo pacman -S lsd bat bottom dust fd sd zoxide stow tmux neovim git zsh starship neofetch
 ```
 
 ## Installation

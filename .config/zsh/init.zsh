@@ -7,3 +7,7 @@ fi
 if [[ -x `which pyenv` ]]; then
   eval "$(pyenv init -)"
 fi
+
+if [[ -x `which neofetch` ]]; then
+  eval "$(neofetch)"
+fi
