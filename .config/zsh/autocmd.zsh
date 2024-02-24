@@ -1,7 +1,7 @@
 # Run ssh-agent
 proc_name=ssh-agent
 proc_count=`ps aux | grep $proc_name | grep -v grep | wc -l`
-if [[ $proc_count -le 1 ]];then
+if [[ $proc_count -le 20 ]];then
   eval $(`which $proc_name`)
 else
   echo $proc_name is running..
