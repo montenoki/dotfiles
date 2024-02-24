@@ -1,9 +1,9 @@
-if [[ -x starship ]]; then
+if [[ -x `which starship` ]]; then
   eval "$(starship init zsh)"
 fi
-if [[ -x zoxide ]]; then
+if [[ -x `which zoxide` ]]; then
   eval "$(zoxide init zsh)"
 fi
-if [[ -x pyenv ]]; then
+if [[ -x `which pyenv` ]]; then
   eval "$(pyenv init -)"
 fi
