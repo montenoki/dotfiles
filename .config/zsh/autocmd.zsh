@@ -15,8 +15,6 @@ for key in ~/.ssh/id_ed25519; do
 	fi
 done
 
-echo '--------'
-
 # Auto run neofetch
 if [[ -x `which neofetch` ]] &&
   [[ -z $VIMRUNTIME ]]; then # Not in Vim
