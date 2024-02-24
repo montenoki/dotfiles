@@ -4,7 +4,7 @@ proc_count=`ps -ef |grep -w $proc_name|grep -v grep|wc -l`
 if [ $proc_count -le 0 ];then
   eval `ssh-agent`
 else
-  ps -axf | grep ssh-agent | grep -v grep | awk '{print "kill -9 " $1}' | zsh
+➜ ps aux | grep ssh-agent | grep -v grep | awk '{print "kill -9 " $2}' | zsh
   eval `ssh-agent`
 fi
 for key in ~/.ssh/id_ed25519; do
