@@ -5,3 +5,6 @@ old
 ^/README.*
 
 \.gitmodules
+
+\.config\lazygit
+\.config\neofetch
