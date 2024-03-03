@@ -24,9 +24,9 @@ path_append "$HOME/.local/sbin"
 if [[ -d "$PYENV_ROOT/bin" ]]; then
   path_append "$PYENV_ROOT/bin"
 fi
-
-if [[ -d "$HOME/.cargo/env" ]]; then
+if [[ -e "$HOME/.cargo/env" ]]; then
   . "$HOME/.cargo/env"
 fi
+
 
 export DATE=$(date +%Y-%m-%d)
