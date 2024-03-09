@@ -1,5 +1,7 @@
 old
 
+.DS_Store
+
 \.git
 \.gitignore
 ^/README.*
