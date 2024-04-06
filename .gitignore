@@ -4,4 +4,5 @@
 .config/raycast
 .config/lazygit
 .config/configstore
+.config/idenvim_lv0
 .DS_Store

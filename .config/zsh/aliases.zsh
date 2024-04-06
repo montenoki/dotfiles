@@ -29,3 +29,6 @@ alias cd...='...'
 alias cd....='....'
 
 alias t="tmux new-session -A -s"
+
+# Switching Configs in Neovim
+alias v0='NVIM_APPNAME=idenvim_lv0 nvim'
