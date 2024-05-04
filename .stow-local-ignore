@@ -1,12 +1,6 @@
-old
-
-.DS_Store
-
 \.git
+old
 \.gitignore
-^/README.*
-
 \.gitmodules
-
-\.config\lazygit
-\.config\neofetch
+LICENSE
+README.md
