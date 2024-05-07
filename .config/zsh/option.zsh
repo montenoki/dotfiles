@@ -36,3 +36,4 @@ setopt NO_CLOBBER
 
 # History ignore command that start with a space
 setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_DUPS
