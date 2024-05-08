@@ -12,6 +12,7 @@
 !.zshrc
 !LICENSE
 !README.md
+!.config/i3/*
 !.config/nvim/*
 !.config/wezterm/*
 !.config/zsh/*
