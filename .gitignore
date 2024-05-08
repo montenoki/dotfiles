@@ -12,7 +12,7 @@
 !.zshrc
 !LICENSE
 !README.md
-!.config/nvim
-!.config/wezterm
-!.config/zsh
+!.config/nvim/*
+!.config/wezterm/*
+!.config/zsh/*
 !.config/starship.toml
