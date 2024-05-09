@@ -1,5 +1,4 @@
 *
-!*/
 
 !.gitconfig
 !.gitignore
@@ -7,14 +6,20 @@
 !.gitmodules
 !.stow-local-ignore
 !.tmux.conf
+!.xinitrc
+!.Xmodmap
+!.Xresources
 !.zlogout
 !.zprofile
 !.zshrc
 !LICENSE
 !README.md
 
-!.config/i3/**
-!.config/nvim/**
-!.config/wezterm/**
+!.config/
+!.config/i3/
+!.config/i3/*
+!.config/nvim/
+!.config/wezterm/
+!.config/zsh/
 !.config/zsh/*.zsh
 !.config/starship.toml
