@@ -1,6 +1,7 @@
-/*
-/*.*
-!old/*
+*
+!*/
+
+!old/**
 !.gitconfig
 !.gitignore
 !.gitmessage
@@ -12,8 +13,9 @@
 !.zshrc
 !LICENSE
 !README.md
-!.config/i3/*
-!.config/nvim/*
-!.config/wezterm/*
-!.config/zsh/*
+
+!.config/i3/**
+!.config/nvim/**
+!.config/wezterm/**
+!.config/zsh/**
 !.config/starship.toml
