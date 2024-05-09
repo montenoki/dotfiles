@@ -1,8 +1,8 @@
+#!/usr/bin/env bash
+
 # https://superuser.com/questions/403355/how-do-i-get-searching-through-my-command-history-working-with-tmux-and-zshell
 # Use nvim as the default editor
 export EDITOR="nvim"
-# But still use emacs-style zsh bindings
-bindkey -e
 
 # Replace standard command with the better one.
 alias cat="bat"

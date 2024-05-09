@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # If a command is issued that can’t be executed as a normal command, and the
 # command is the name of a directory, perform the cd command to that directory.
 setopt AUTO_CD
