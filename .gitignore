@@ -16,5 +16,5 @@
 !.config/i3/**
 !.config/nvim/**
 !.config/wezterm/**
-!.config/zsh/**
+!.config/zsh/*.zsh
 !.config/starship.toml
