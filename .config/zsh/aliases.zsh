@@ -11,8 +11,6 @@ alias find="fd"
 alias ls="lsd -a"
 alias top="btm"
 alias tree="lsd --tree"
-alias vi="nvim"
-alias vim="nvim"
 
 alias grep="grep --color=auto"
 
@@ -29,6 +27,3 @@ alias cd...='...'
 alias cd....='....'
 
 alias t="tmux new-session -A -s"
-
-# Switching Configs in Neovim
-alias v0='NVIM_APPNAME=idenvim_lv0 nvim'
