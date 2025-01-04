@@ -32,3 +32,6 @@ fi
 
 DATE=$(date +%Y-%m-%d)
 export DATE
+
+# Import API KEY
+export $(cat ~/.config/.env | xargs)

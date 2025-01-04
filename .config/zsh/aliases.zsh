@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-# https://superuser.com/questions/403355/how-do-i-get-searching-through-my-command-history-working-with-tmux-and-zshell
-# Use nvim as the default editor
+# 设置默认编辑器
 export EDITOR="nvim"
 
-# Replace standard command with the better one.
+# 现代化命令替换
 alias cat="bat"
 alias du="dust"
 alias find="fd"
@@ -14,11 +13,12 @@ alias tree="lsd --tree"
 
 alias grep="grep --color=auto"
 
-# Shortcuts
+# 常用命令简写
 alias b="brew"
 alias g="git"
 
-alias cd=" cd" # Start with a space to be ignored in history
+# 目录导航（空格开头不记录历史）
+alias cd=" cd"
 alias ..=" cd ..; ls"
 alias ...=' cd ..; cd ..; ls'
 alias ....=' cd ..; cd ..; cd ..; ls'
@@ -26,4 +26,5 @@ alias cd..='..'
 alias cd...='...'
 alias cd....='....'
 
+# tmux快捷启动
 alias t="tmux new-session -A -s"

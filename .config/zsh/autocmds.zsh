@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Run ssh-agent
+# 启动ssh-agent（如进程数<=20）
 proc_name=ssh-agent
 proc_count=$(pgrep -f $proc_name | grep -v grep -c)
 agent="$(which $proc_name)"
@@ -10,7 +10,7 @@ else
 	echo $proc_name is running..
 fi
 
-# Add private key
+# 添加SSH私钥
 typeset -ga keys
 keys+=("$HOME/.ssh/id_ed25519")
 for key in "${keys[@]}"; do
@@ -21,13 +21,13 @@ for key in "${keys[@]}"; do
 	fi
 done
 
-# Auto run neofetch
+# 非Vim环境下自动运行neofetch
 if [[ -x $(which neofetch) ]] &&
-	[[ -z $VIMRUNTIME ]]; then # Not in Vim
+	[[ -z $VIMRUNTIME ]]; then
 	eval "neofetch"
 fi
 
-# Auto source venv for python
+# 重写cd命令，自动激活/退出Python虚拟环境
 function cd() {
 	builtin cd "$@" || {
 		echo "cd Failed"
@@ -35,15 +35,13 @@ function cd() {
 	}
 
 	if [[ -z "$VIRTUAL_ENV" ]]; then
-		## If env folder is found then activate the vitualenv
+		# 如果当前目录有.venv，则激活环境
 		if [[ -d ./.venv ]]; then
 			# shellcheck source=/dev/null
 			source ./.venv/bin/activate
 		fi
 	else
-		## check the current folder belong to earlier VIRTUAL_ENV folder
-		# if yes then do nothing
-		# else deactivate
+		# 如果离开了虚拟环境目录，则退出环境
 		parentdir="$(dirname "$VIRTUAL_ENV")"
 		if [[ "$PWD"/ != "$parentdir"/* ]]; then
 			deactivate
