@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
-# XDG Base Directory Specification
+# XDG 规范目录
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+
 export ZSH_CONFIG="$XDG_CONFIG_HOME/zsh"
 export ZSH_CACHE="$XDG_CACHE_HOME/zsh"
+
 export PYENV_ROOT="$HOME/.pyenv"
-mkdir -p "$ZSH_CACHE"
+
+[ -d "$ZSH_CACHE" ] || mkdir -p "$ZSH_CACHE"
 
 # executable search path
 path_append() {
@@ -18,6 +22,7 @@ path_append() {
 		;;
 	esac
 }
+
 path_append "/usr/local/sbin"
 path_append "$HOME/.local/bin"
 path_append "$HOME/.local/sbin"
@@ -26,7 +31,6 @@ if [[ -d "$PYENV_ROOT/bin" ]]; then
 	path_append "$PYENV_ROOT/bin"
 fi
 if [[ -e "$HOME/.cargo/env" ]]; then
-	# shellcheck source=/dev/null
 	. "$HOME/.cargo/env"
 fi
 

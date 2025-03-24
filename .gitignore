@@ -1,25 +1,54 @@
+# 默认黑名单
 *
 
+# Stow
+!.stow-local-ignore
+
+# Git
 !.gitconfig
 !.gitignore
 !.gitmessage
 !.gitmodules
-!.stow-local-ignore
-!.tmux.conf
+
+# X
 !.xinitrc
 !.Xmodmap
 !.Xresources
+
+# ZSH
 !.zlogout
 !.zprofile
 !.zshrc
+
+# tmux
+!.tmux.conf
+
+# SSH
+!.ssh/
+!.ssh/config
+
+# Others
 !LICENSE
 !README.md
 
 !.config/
-!.config/i3/
-!.config/i3/*
-!.config/nvim/
-!.config/wezterm/
+
 !.config/zsh/
 !.config/zsh/*.zsh
+
+!.config/i3/
+!.config/i3/**
+
+!.config/nvim/
+!.config/nvim/**
+
+!.config/wezterm/
+!.config/wezterm/**
+
+!.config/alacritty/
+!.config/alacritty/**
+
+!.config/zellij/
+!.config/zellij/*.kdl
+
 !.config/starship.toml
