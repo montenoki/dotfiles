@@ -47,12 +47,3 @@ export SAVEHIST=100000                 # 历史文件记录数
 boot_time_end=$(gdate +%s%N 2>/dev/null || date +%s%N)
 boot_time_duration=$(((boot_time_end - boot_time_start) / 1000000))
 echo $boot_time_duration ms overall boot duration
-
-# 启动 zellij (如果不在 zellij 会话中且终端支持)
-if [[ -z "$ZELLIJ" ]]; then
-  if [[ "$TERM" != "dumb" && "$TERM" != "linux" ]]; then
-    if command -v zellij >/dev/null 2>&1; then
-      zellij
-    fi
-  fi
-fi
