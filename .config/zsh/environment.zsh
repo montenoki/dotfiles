@@ -14,18 +14,23 @@ export PYENV_ROOT="$HOME/.pyenv"
 
 # executable search path
 path_append() {
-	# Add path to $PATH if path not exist.
-	case ":$PATH:" in
-	*:"$1":*) ;;
-	*)
-		export PATH="${PATH:+$PATH:}$1"
-		;;
-	esac
+    # First check if the directory exists
+    if [ -d "$1" ]; then
+        # Add path to $PATH if path not exist in PATH
+        case ":$PATH:" in
+        *:"$1":*) ;;
+        *)
+            export PATH="${PATH:+$PATH:}$1"
+            ;;
+        esac
+    fi
 }
 
 path_append "/usr/local/sbin"
 path_append "$HOME/.local/bin"
 path_append "$HOME/.local/sbin"
+path_append "/snap/bin"
+
 
 if [[ -d "$PYENV_ROOT/bin" ]]; then
 	path_append "$PYENV_ROOT/bin"
