@@ -38,4 +38,8 @@ DATE=$(date +%Y-%m-%d)
 export DATE
 
 # Import API KEY
-export $(cat ~/.config/.env | xargs)
+if [[ -f "$HOME/.config/.env" ]]; then
+    export $(cat "$HOME/.config/.env" | xargs)
+else
+    echo "Warning: ~/.config/.env file not found" >&2
+fi
