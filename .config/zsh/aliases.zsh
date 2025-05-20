@@ -3,7 +3,7 @@
 # 设置默认编辑器
 export EDITOR="nvim"
 
-# 现代化命令替换
+# 命令替换
 alias cat="bat"
 alias du="dust"
 alias ls="lsd -a"
@@ -22,6 +22,8 @@ alias ....=' cd ..; cd ..; cd ..; ls'
 alias cd..='..'
 alias cd...='...'
 alias cd....='....'
+
+alias rm=" rm"
 
 # tmux快捷启动
 alias t="tmux new-session -A -s"

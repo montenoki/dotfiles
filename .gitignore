@@ -52,3 +52,9 @@
 !.config/zellij/*.kdl
 
 !.config/starship.toml
+
+!.config/sway/
+!.config/sway/**
+
+!.config/waybar/
+!.config/waybar/**
