@@ -28,7 +28,7 @@ output "BNQ BenQ EX2780Q 21L00971019" {
     scale 1.2
     bg ~/.config/sway/wallpapers/arch-linux-wallpaper-1919x3397.png fill
 }
-output "Apple Computer Inc Color LCD Unknown" {
+output eDP-1 {
     resolution 1680x1050
     scale 1.5
     bg ~/.config/sway/wallpapers/arch-linux-wallpaper-3840x2160.png fill
@@ -41,11 +41,11 @@ bindswitch --reload --locked lid:off output $laptop enable
 exec_always ~/bin/handle-lid.sh
 
 # set inner and outer gaps
-gaps outer 15
+gaps outer 5
 gaps inner 15
-default_border pixel 2
+default_border pixel 3
 
-exec_always ~/.config/sway/window-transparency.sh
+font pango:Maple Mono NF CN 12
 
 # set color theme
 # class                 border        bground       text        indicator     child_border
