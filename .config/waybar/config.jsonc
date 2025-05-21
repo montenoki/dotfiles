@@ -1,6 +1,6 @@
 // -*- mode: jsonc -*-
 {
-    "height": 25,
+    // "height": 10,
     "spacing": 5,
     // Choose the order of the modules
     "modules-left": [
@@ -24,7 +24,7 @@
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
-        "all-outputs": true,
+        "all-outputs": false,
         "warp-on-scroll": false,
         "format": "{icon}",
         "format-icons": {
@@ -56,8 +56,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": " ",
+            "deactivated": " "
         }
     },
     "tray": {
