@@ -20,24 +20,47 @@ path_append() {
         case ":$PATH:" in
         *:"$1":*) ;;
         *)
-            export PATH="${PATH:+$PATH:}$1"
+            export PATH="${PATH:+$PATH:}$1"  # 追加到末尾
             ;;
         esac
     fi
 }
 
+path_prepend() {
+    # First check if the directory exists
+    if [ -d "$1" ]; then
+        # Add path to $PATH if path not exist in PATH
+        case ":$PATH:" in
+        *:"$1":*) ;;
+        *)
+            export PATH="$1${PATH:+:$PATH}"  # 前置到开头
+            ;;
+        esac
+    fi
+}
+
+# 低优先级的路径用 append（先设置）
 path_append "/usr/local/sbin"
-path_append "$HOME/.local/bin"
-path_append "$HOME/.local/sbin"
 path_append "/snap/bin"
 
-
-if [[ -d "$PYENV_ROOT/bin" ]]; then
-	path_append "$PYENV_ROOT/bin"
+# Homebrew 环境
+if [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
+
+# pyenv
+if [[ -d "$PYENV_ROOT/bin" ]]; then
+	path_prepend "$PYENV_ROOT/bin"
+fi
+
+# Rust
 if [[ -e "$HOME/.cargo/env" ]]; then
 	. "$HOME/.cargo/env"
 fi
+
+# 高优先级的路径用 prepend
+path_prepend "$HOME/.local/sbin"
+path_prepend "$HOME/.local/bin"
 
 DATE=$(date +%Y-%m-%d)
 export DATE

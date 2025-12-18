@@ -11,3 +11,7 @@ if [[ -x $(which pyenv) ]]; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
+if [[ -x $(which brew) ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
