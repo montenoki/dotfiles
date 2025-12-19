@@ -29,8 +29,8 @@ output "BNQ BenQ EX2780Q 21L00971019" {
     bg ~/.config/sway/wallpapers/arch-linux-wallpaper-1919x3397.png fill
 }
 output eDP-1 {
-    resolution 1680x1050
-    scale 1.5
+    resolution 1920x1200
+    scale 1
     bg ~/.config/sway/wallpapers/arch-linux-wallpaper-3840x2160.png fill
 }
 
@@ -38,14 +38,15 @@ output eDP-1 {
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
-exec_always ~/bin/handle-lid.sh
+exec_always ~/.config/sway/scripts/handle-lid.sh
+# exec_always --no-startup-id waybar
 
 # set inner and outer gaps
-gaps outer 5
-gaps inner 15
+gaps outer 2
+gaps inner 5
 default_border pixel 3
 
-font pango:Maple Mono NF CN 12
+font pango:Maple Mono NF CN 14
 
 # set color theme
 # class                 border        bground       text        indicator     child_border
@@ -85,6 +86,15 @@ input "1133:50503:Logitech_USB_Receiver" {
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+
+exec_always {
+    systemctl --user set-environment XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway XDG_SESSION_TYPE=wayland
+    systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK DISPLAY
+    dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE DISPLAY
+}
+
+exec_always mako
+exec_always --no-startup-id fcitx5
 
 ### Key bindings
 #
@@ -146,9 +156,6 @@ input "1133:50503:Logitech_USB_Receiver" {
     bindsym $mod+5 workspace number 5
     bindsym $mod+6 workspace number 6
     bindsym $mod+7 workspace number 7
-    bindsym $mod+8 workspace number 8
-    bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
@@ -157,11 +164,14 @@ input "1133:50503:Logitech_USB_Receiver" {
     bindsym $mod+Shift+5 move container to workspace number 5
     bindsym $mod+Shift+6 move container to workspace number 6
     bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+    # 切换到英文（通常 index=0）
+    bindsym $mod+0 exec "fcitx5-remote -s keyboard-us"
+
+    # 切换到中文 Rime（通常 index=1）
+    bindsym $mod+9 exec "fcitx5-remote -s rime"
 #
 # Layout stuff:
 #
@@ -242,18 +252,27 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
+    id bar0
+    mode hide
+    hidden_state hide
+    modifier Mod4
     position top
     swaybar_command waybar
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    # status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-
-    # colors {
-    #     statusline #ffffff
-    #     background #323232
-    #     inactive_workspace #32323200 #32323200 #5c5c5c
-    # }
 }
+# bar {
+#     mode hide
+#     position top
+#     swaybar_command waybar
+#
+#     # When the status_command prints a new line to stdout, swaybar updates.
+#     # The default just shows the current date and time.
+#     # status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+#
+#     # colors {
+#     #     statusline #ffffff
+#     #     background #323232
+#     #     inactive_workspace #32323200 #32323200 #5c5c5c
+#     # }
+# }
 
 # include /etc/sway/config.d/*
