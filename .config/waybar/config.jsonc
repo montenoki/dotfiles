@@ -1,7 +1,6 @@
 // -*- mode: jsonc -*-
 {
     "ipc": true,
-    "spacing": 5,
     // "height": 10,
     "spacing": 5,
     // Choose the order of the modules
@@ -104,7 +103,8 @@
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click-right": "nm-connection-editor"
     },
     "pulseaudio": {
         "scroll-step": 5, // %, can be a float
