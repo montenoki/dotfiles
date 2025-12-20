@@ -3,26 +3,21 @@
     "ipc": true,
     // "height": 10,
     "spacing": 5,
-    // Choose the order of the modules
+
     "modules-left": [
+        "sway/workspaces",
         "sway/mode",
-        "sway/scratchpad",
-        "sway/window",
     ],
     "modules-center": [
-        "sway/workspaces"
-    ],
-    "modules-right": [
-        "idle_inhibitor",
-        "pulseaudio",
-        "network",
-        "cpu",
-        "memory",
-        "battery",
-        "tray",
         "clock",
     ],
-    // Modules configuration
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "battery",
+        "tray",
+    ],
+
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
@@ -47,13 +42,6 @@
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
-    "sway/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -62,24 +50,11 @@
         }
     },
     "tray": {
-        // "icon-size": 21,
         "spacing": 10,
-        // "icons": {
-        //   "blueman": "bluetooth",
-        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
-        // }
     },
     "clock": {
-        // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
-    },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": true
-    },
-    "memory": {
-        "format": "{}% "
     },
     "battery": {
         "states": {
@@ -89,15 +64,14 @@
         },
         "format": "{capacity}% {icon}",
         "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
+        "format-charging": "{capacity}% 󱐌",
         "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        "format-good": "", // An empty format will hide the module
+        "format-good": "",
         "format-full": "",
+        "format-alt": "{time} {icon}",
         "format-icons": ["", "", "", "", ""]
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
