@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 if [[ -x $(which starship) ]]; then
 	eval "$(starship init zsh)"
 fi

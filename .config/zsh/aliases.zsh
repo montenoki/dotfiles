@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # 设置默认编辑器
 export EDITOR="nvim"
 

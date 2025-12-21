@@ -1,8 +1,3 @@
-#!/usr/bin/env bash
-
-# 开始计时，测量启动时间
-# boot_time_start=$(gdate +%s%N 2>/dev/null || date +%s%N)
-
 # 首先加载环境配置
 # shellcheck source=/dev/null
 source "$HOME/.config/zsh/environment.zsh"
@@ -25,14 +20,11 @@ sources+=("$ZSH_CONFIG/aliases.zsh")      # 别名配置
 sources+=("$ZSH_CONFIG/autocmds.zsh")     # 自动命令配置
 sources+=("$ZSH_CONFIG/keybinds.zsh")     # 快捷键配置
 
-# 遍历并加载所有配置文件，同时记录每个文件的加载时间
+# 遍历并加载所有配置文件
 for file in "${sources[@]}"; do
 	if [[ -e $file ]]; then
-		source_include_time_start=$(gdate +%s%N 2>/dev/null || date +%s%N)
 		# shellcheck source=/dev/null
 		source "$file"
-		source_include_duration=$((($(gdate +%s%N 2>/dev/null || date +%s%N) - source_include_time_start) / 1000000))
-		# echo "$source_include_duration ms runtime for $file"
 	fi
 done
 
@@ -42,8 +34,3 @@ done
 export HISTFILE=~/.zsh/.zsh_history    # 历史文件路径
 export HISTSIZE=1000                   # 当前会话历史记录数
 export SAVEHIST=100000                 # 历史文件记录数
-
-# 计算并显示总启动时间
-# boot_time_end=$(gdate +%s%N 2>/dev/null || date +%s%N)
-# boot_time_duration=$(((boot_time_end - boot_time_start) / 1000000))
-# echo $boot_time_duration ms overall boot duration
