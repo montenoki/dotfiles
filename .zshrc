@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # 开始计时，测量启动时间
-boot_time_start=$(gdate +%s%N 2>/dev/null || date +%s%N)
+# boot_time_start=$(gdate +%s%N 2>/dev/null || date +%s%N)
 
 # 首先加载环境配置
 # shellcheck source=/dev/null
@@ -32,7 +32,7 @@ for file in "${sources[@]}"; do
 		# shellcheck source=/dev/null
 		source "$file"
 		source_include_duration=$((($(gdate +%s%N 2>/dev/null || date +%s%N) - source_include_time_start) / 1000000))
-		echo "$source_include_duration ms runtime for $file"
+		# echo "$source_include_duration ms runtime for $file"
 	fi
 done
 
@@ -44,6 +44,6 @@ export HISTSIZE=1000                   # 当前会话历史记录数
 export SAVEHIST=100000                 # 历史文件记录数
 
 # 计算并显示总启动时间
-boot_time_end=$(gdate +%s%N 2>/dev/null || date +%s%N)
-boot_time_duration=$(((boot_time_end - boot_time_start) / 1000000))
-echo $boot_time_duration ms overall boot duration
+# boot_time_end=$(gdate +%s%N 2>/dev/null || date +%s%N)
+# boot_time_duration=$(((boot_time_end - boot_time_start) / 1000000))
+# echo $boot_time_duration ms overall boot duration
