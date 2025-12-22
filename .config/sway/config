@@ -4,6 +4,6 @@ include ~/.config/sway/config.d/15-lid.conf
 include ~/.config/sway/config.d/20-inputs.conf
 include ~/.config/sway/config.d/30-appearance.conf
 include ~/.config/sway/config.d/40-autostart.conf
-include ~/.config/sway/config.d/50-keybindings.conf
-include ~/.config/sway/config.d/60-modes.conf
+include ~/.config/sway/config.d/50-modes.conf
+include ~/.config/sway/config.d/60-keybindings.conf
 include ~/.config/sway/config.d/70-bar.conf
