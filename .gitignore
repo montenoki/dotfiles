@@ -10,11 +10,6 @@
 !.gitmessage
 !.gitmodules
 
-# X
-!.xinitrc
-!.Xmodmap
-!.Xresources
-
 # ZSH
 !.zlogout
 !.zprofile
@@ -58,3 +53,6 @@
 
 !.config/waybar/
 !.config/waybar/**
+
+!.config/swaync/
+!.config/swaync/**

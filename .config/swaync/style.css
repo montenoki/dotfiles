@@ -1,0 +1,17 @@
+* {
+  font-family: monospace;
+  font-size: 11pt;
+}
+
+.notification {
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.notification-content {
+  margin: 6px;
+}
+
+.control-center {
+  border-radius: 10px;
+}
