@@ -1,3 +1,5 @@
 [window]
 dimensions = { columns = 140, lines = 40 }
 decorations = "Buttonless"
+opacity = 0.85
+blur = true

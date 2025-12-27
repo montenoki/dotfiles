@@ -10,15 +10,27 @@ if [ -z "$LAPTOP_OUTPUT" ]; then
 fi
 
 # 读取盖子状态
-LID_STATE_FILE="/proc/acpi/button/lid/LID0/state"
+LID_STATE_FILE="/proc/acpi/button/lid/LID/state"
 read -r LS <"$LID_STATE_FILE"
+
+# 判断是否存在"非笔记本输出"
+has_external() {
+    swaymsg -t get_outputs | grep -oP '"name":\s*"\K[^"]+' | grep -qv "^${LAPTOP_OUTPUT}$"
+}
 
 case "$LS" in
 *open)
     swaymsg output "$LAPTOP_OUTPUT" enable
     ;;
 *closed)
-    swaymsg output "$LAPTOP_OUTPUT" disable
+    if has_external; then
+        # 有外接屏：只关闭主屏
+        swaymsg output "$LAPTOP_OUTPUT" disable
+    else
+        # 没外接屏：锁屏，然后关闭主屏
+        swaylock -f
+        swaymsg output "$LAPTOP_OUTPUT" disable
+    fi
     ;;
 *)
     echo "Could not get lid state" >&2
