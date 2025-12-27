@@ -11,12 +11,14 @@
         "~/.config/waybar/modules/clock.json",
         "~/.config/waybar/modules/battery.json",
         "~/.config/waybar/modules/pulseaudio.json",
-        "~/.config/waybar/modules/network.json"
+        "~/.config/waybar/modules/network.json",
+        "~/.config/waybar/modules/status.json"
     ],
     "modules-left": [
-        // "clock#date",
         "clock",
         "sway/mode",
+        "cpu",
+        "memory",
     ],
     "modules-center": [
         "sway/workspaces",
