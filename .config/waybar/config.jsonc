@@ -1,102 +1,31 @@
 // -*- mode: jsonc -*-
 {
     "ipc": true,
-    // "height": 10,
-    "spacing": 5,
+    "spacing": 10,
 
+    "include": [
+        "~/.config/waybar/modules/workspaces.json",
+        "~/.config/waybar/modules/mode.json",
+        "~/.config/waybar/modules/idle_inhibitor.json",
+        "~/.config/waybar/modules/tray.json",
+        "~/.config/waybar/modules/clock.json",
+        "~/.config/waybar/modules/battery.json",
+        "~/.config/waybar/modules/pulseaudio.json",
+        "~/.config/waybar/modules/network.json"
+    ],
     "modules-left": [
-        "sway/workspaces",
+        "clock#date",
+        "clock",
         "sway/mode",
     ],
     "modules-center": [
-        "clock",
+        "sway/workspaces",
     ],
     "modules-right": [
+        "idle_inhibitor",
         "pulseaudio",
         "network",
         "battery",
         "tray",
     ],
-
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": false,
-        "warp-on-scroll": false,
-        "format": "{icon}",
-        "format-icons": {
-            "1": "󰎤",
-            "2": "󰎧",
-            "3": "󰎪",
-            "4": "󰎭",
-            "5": "󰎱",
-            "6": "󰎳",
-            "7": "󰎶",
-            "8": "󰎹",
-            "9": "󰎼",
-            "10": "󰎡",
-            "urgent": "",
-            "focused": "󰮔",
-            "default": ""
-        }
-    },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": " ",
-            "deactivated": " "
-        }
-    },
-    "tray": {
-        "spacing": 10,
-    },
-    "clock": {
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% 󱐌",
-        "format-plugged": "{capacity}% ",
-        "format-good": "",
-        "format-full": "",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click-right": "nm-connection-editor"
-    },
-    "pulseaudio": {
-        "scroll-step": 5, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
 }
