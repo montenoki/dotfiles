@@ -14,7 +14,7 @@
         "~/.config/waybar/modules/network.json"
     ],
     "modules-left": [
-        "clock#date",
+        // "clock#date",
         "clock",
         "sway/mode",
     ],
