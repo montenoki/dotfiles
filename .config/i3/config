@@ -1,2 +1,0 @@
-include $HOME/.config/i3/i3wm.conf
-include $HOME/.config/i3/keybindings.conf
