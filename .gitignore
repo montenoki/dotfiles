@@ -56,3 +56,6 @@
 
 !.config/swaync/
 !.config/swaync/**
+
+!.config/opencode/
+!.config/opencode/**
