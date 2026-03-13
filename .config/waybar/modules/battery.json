@@ -1,8 +1,8 @@
 {
     "battery": {
         "states": {
-            "good": 70,
-            "warning": 40,
+            "good": 75,
+            "warning": 30,
             "critical": 20
         },
 
