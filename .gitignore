@@ -60,6 +60,13 @@
 !.config/opencode/
 !.config/opencode/**
 
+# Fcitx5 / Rime
+!.local/
+!.local/share/
+!.local/share/fcitx5/
+!.local/share/fcitx5/rime
+!.local/share/fcitx5/rime/**
+
 # System files & scripts (deployed via scripts/setup-system.sh)
 !etc/
 !etc/**
