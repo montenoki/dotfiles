@@ -3,3 +3,5 @@
 	email = monten.oki@gmail.com
 [commit]
 	template = ~/.gitmessage
+[pull]
+	ff = only
