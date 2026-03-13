@@ -59,3 +59,9 @@
 
 !.config/opencode/
 !.config/opencode/**
+
+# System files & scripts (deployed via scripts/setup-system.sh)
+!etc/
+!etc/**
+!scripts/
+!scripts/**
