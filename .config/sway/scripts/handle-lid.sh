@@ -27,9 +27,9 @@ case "$LS" in
         # 有外接屏：只关闭主屏
         swaymsg output "$LAPTOP_OUTPUT" disable
     else
-        # 没外接屏：锁屏，然后关闭主屏
+        # 没外接屏：锁屏，然后挂起
         swaylock -f -c 000000
-        swaymsg output "$LAPTOP_OUTPUT" disable
+        systemctl suspend
     fi
     ;;
 *)
