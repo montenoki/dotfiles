@@ -86,6 +86,17 @@ Then use the GNU stow to create symlinks.
 stow --adopt .
 ```
 
+### System-level Configuration
+
+Files under `etc/` are deployed to `/etc/` and cannot be managed by stow.
+Run this after cloning, and again whenever you add new system-level files:
+
+```bash
+sudo ./scripts/setup-system.sh
+```
+
+Preview changes without applying: `sudo ./scripts/setup-system.sh --dry-run`
+
 ### Setup tmux (optional)
 
 Clone tpm
