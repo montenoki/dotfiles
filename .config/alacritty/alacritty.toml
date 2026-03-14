@@ -1,2 +1,7 @@
 [general]
 import = ["~/.config/alacritty/fonts.toml", "~/.config/alacritty/window.toml"]
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
