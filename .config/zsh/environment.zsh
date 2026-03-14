@@ -1,128 +1,86 @@
-# ============================================================================
-# XDG 基础目录规范
-# ============================================================================
-(( ${+_ENV_LOADED} )) && return
-typeset -g _ENV_LOADED=1
+# ~/.config/zsh/environment.zsh
+# 环境变量 & PATH
 
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
+# -- XDG 基础目录 -------------------------------------------------
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
 
-# ============================================================================
-# Shell 配置目录
-# ============================================================================
 export ZSH_CACHE="$XDG_CACHE_HOME/zsh"
+[[ -d "$ZSH_CACHE" ]] || mkdir -p "$ZSH_CACHE"
+
+# -- 编辑器 --------------------------------------------------------
+export EDITOR="nvim"
+export VISUAL="$EDITOR"
+
+# -- 开发工具根目录 ------------------------------------------------
 export PYENV_ROOT="$HOME/.pyenv"
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 
-# 确保缓存目录存在
-[ -d "$ZSH_CACHE" ] || mkdir -p "$ZSH_CACHE"
+# -- PATH 管理 -----------------------------------------------------
+typeset -gU path  # -U = unique，自动去重
 
-# ============================================================================
-# PATH 管理函数
-# ============================================================================
+# 前置路径（优先级从低到高，后添加的在最前）
+typeset -a prepend_dirs=(
+    "$PYENV_ROOT/bin"
+    "$HOME/.opencode/bin"
+    "$HOME/.local/sbin"
+    "$HOME/.local/bin"
+)
 
-# 添加目录到 PATH（支持前置或后置）
-# 用法: path_add [--prepend|--append] <directory>
-path_add() {
-    local mode="append"
-    local dir=""
-    
-    # 解析参数
-    while [ $# -gt 0 ]; do
-        case "$1" in
-            --prepend)
-                mode="prepend"
-                shift
-                ;;
-            --append)
-                mode="append"
-                shift
-                ;;
-            *)
-                dir="$1"
-                shift
-                ;;
-        esac
-    done
-    
-    # 检查目录是否存在
-    if [ ! -d "$dir" ]; then
-        return 1
-    fi
-    
-    # 检查目录是否已在 PATH 中
-    case ":$PATH:" in
-        *:"$dir":*)
-            return 0
-            ;;
-    esac
-    
-    # 添加到 PATH
-    if [ "$mode" = "prepend" ]; then
-        export PATH="$dir${PATH:+:$PATH}"
-    else
-        export PATH="${PATH:+$PATH:}$dir"
-    fi
+# 后置路径
+typeset -a append_dirs=(
+    "/usr/local/sbin"
+    "/snap/bin"
+)
+
+typeset d
+for d in $prepend_dirs; do
+    [[ -d "$d" ]] && path=("$d" $path)
+done
+for d in $append_dirs; do
+    [[ -d "$d" ]] && path+=("$d")
+done
+
+# -- 加载 .env 文件 ------------------------------------------------
+_load_dotenv() {
+    local envfile="$1"
+    [[ -f "$envfile" ]] || return
+
+    local line key value
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        # 去前后空白
+        line="${line## }"
+        line="${line%% }"
+
+        # 跳过空行和注释
+        [[ -z "$line" || "$line" == \#* ]] && continue
+
+        # 分割 key=value（只在第一个 = 处分割）
+        key="${line%%=*}"
+        value="${line#*=}"
+
+        # 去 key/value 前后空白
+        key="${key## }" ; key="${key%% }"
+        value="${value## }" ; value="${value%% }"
+
+        # 去引号（单引号或双引号）
+        if [[ "$value" == \"*\" || "$value" == \'*\' ]]; then
+            value="${value:1:-1}"
+        fi
+
+        [[ -n "$key" ]] && export "$key=$value"
+    done < "$envfile"
 }
 
-# ============================================================================
-# 系统路径配置
-# ============================================================================
-path_add --append "/usr/local/sbin"
-path_add --append "/snap/bin"
+_load_dotenv "$XDG_CONFIG_HOME/.env"
 
-# ============================================================================
-# 开发工具初始化
-# ============================================================================
+# -- Rust (Cargo) --------------------------------------------------
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
-# Pyenv
-if [[ -d "$PYENV_ROOT/bin" ]]; then
-    path_add --prepend "$PYENV_ROOT/bin"
-fi
-
-# Node Version Manager (nvm)
-export NVM_DIR="$HOME/.config/nvm"
-
-# OpenCode
-path_add --prepend "$HOME/.opencode/bin"
-
-# 用户本地路径（优先级最高）
-path_add --prepend "$HOME/.local/sbin"
-path_add --prepend "$HOME/.local/bin"
-
-# ============================================================================
-# 环境变量
-# ============================================================================
-
-# 编辑器
-export EDITOR="nvim"
-
-# ============================================================================
-# 加载本地环境配置文件
-# ============================================================================
-if [[ -f "$HOME/.config/.env" ]]; then
-    # 安全地加载 .env 文件
-    # 跳过空行和注释行，正确处理键值对
-    while IFS='=' read -r key value; do
-        # 跳过空行
-        [[ -z "$key" ]] && continue
-        # 跳过注释行
-        [[ "$key" =~ ^[[:space:]]*# ]] && continue
-        # 移除前后空格
-        key=$(echo "$key" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-        value=$(echo "$value" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-        # 移除值两端的引号（如果有）
-        value=$(echo "$value" | sed 's/^["'\'']\(.*\)["'\'']$/\1/')
-        # 导出变量
-        [[ -n "$key" ]] && export "$key=$value"
-    done < "$HOME/.config/.env"
-fi
-
-# ============================================================================
-# 输入法配置（Fcitx）
-# ============================================================================
-# 仅在 Fcitx 可用时设置输入法环境变量
-if command -v fcitx5 >/dev/null 2>&1 || command -v fcitx >/dev/null 2>&1; then
+# -- 输入法（Fcitx） ----------------------------------------------
+if (( $+commands[fcitx5] || $+commands[fcitx] )); then
     export GTK_IM_MODULE=fcitx
     export QT_IM_MODULE=fcitx
     export XMODIFIERS="@im=fcitx"

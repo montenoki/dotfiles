@@ -1,3 +1,4 @@
-# 所有 shell 都会加载，保持最小化
+# ~/.zshenv
+# zsh 配置入口
+
 export ZDOTDIR="$HOME/.config/zsh"
-[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

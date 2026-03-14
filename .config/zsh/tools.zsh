@@ -1,25 +1,38 @@
-# ============================================================================
-# 开发工具初始化（幂等 — 多次 source 安全）
-# 注意：此文件依赖 environment.zsh 先行加载（提供 NVM_DIR、PYENV_ROOT）
-# ============================================================================
-(( ${+_TOOLS_LOADED} )) && return
-typeset -g _TOOLS_LOADED=1
+# ~/.config/zsh/tools.zsh
+# 开发工具初始化
+# 依赖: environment.zsh
 
-# Homebrew（包管理器）
+# -- Homebrew ------------------------------------------------------
 if [[ "$OSTYPE" == darwin* ]]; then
     [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-# NVM（Node 版本管理器）
+# -- NVM (懒加载) --------------------------------------------------
 if [[ -s "$NVM_DIR/nvm.sh" ]]; then
-    source "$NVM_DIR/nvm.sh"
-    [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+    _nvm_load() {
+        unset -f nvm node npm npx yarn pnpm corepack
+        source "$NVM_DIR/nvm.sh"
+        [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+    }
+    nvm()      { _nvm_load; nvm      "$@"; }
+    node()     { _nvm_load; node     "$@"; }
+    npm()      { _nvm_load; npm      "$@"; }
+    npx()      { _nvm_load; npx      "$@"; }
+    yarn()     { _nvm_load; yarn     "$@"; }
+    pnpm()     { _nvm_load; pnpm     "$@"; }
+    corepack() { _nvm_load; corepack "$@"; }
 fi
 
-# Pyenv（Python 版本管理器）
-if command -v pyenv &>/dev/null; then
+# -- Pyenv ---------------------------------------------------------
+if (( $+commands[pyenv] )); then
     eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
+    (( $+commands[pyenv-virtualenv-init] )) && eval "$(pyenv virtualenv-init -)"
 fi
+
+# -- Starship -----------------------------------------------------
+(( $+commands[starship] )) && eval "$(starship init zsh)"
+
+# -- Zoxide -------------------------------------------------------
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh)"

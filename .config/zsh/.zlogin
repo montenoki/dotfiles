@@ -2,4 +2,4 @@
 # 登录后执行（.zshrc 之后）
 # ============================================================================
 
-# command -v neofetch &>/dev/null && neofetch
+command -v neofetch &>/dev/null && neofetch
