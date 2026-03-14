@@ -2,7 +2,7 @@
 \.gitignore
 \.gitmodules
 LICENSE
-README.md
+README\.md
 etc
 scripts
 zsh\.log
