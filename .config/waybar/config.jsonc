@@ -2,7 +2,6 @@
 {
     "ipc": true,
     "spacing": 10,
-
     "include": [
         "~/.config/waybar/modules/workspaces.json",
         "~/.config/waybar/modules/mode.json",
@@ -10,6 +9,7 @@
         "~/.config/waybar/modules/tray.json",
         "~/.config/waybar/modules/clock.json",
         "~/.config/waybar/modules/battery.json",
+        "~/.config/waybar/modules/power.json",
         "~/.config/waybar/modules/pulseaudio.json",
         "~/.config/waybar/modules/network.json",
         "~/.config/waybar/modules/status.json"
@@ -18,16 +18,17 @@
         "clock",
         "cpu",
         "memory",
-        "sway/mode",
+        "sway/mode"
     ],
     "modules-center": [
-        "sway/workspaces",
+        "sway/workspaces"
     ],
     "modules-right": [
         "idle_inhibitor",
         "pulseaudio",
         "network",
         "battery",
-        "tray",
-    ],
+        "power-profiles-daemon",
+        "tray"
+    ]
 }

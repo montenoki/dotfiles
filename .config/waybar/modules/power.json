@@ -1,0 +1,12 @@
+{
+    "power-profiles-daemon": {
+        "format": "[{icon}]",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "format-icons": {
+            "default":      "󰛕",
+            "performance":  "󰈸",
+            "balanced":     "",
+            "power-saver":  "󰌪"
+        }
+    }
+}
