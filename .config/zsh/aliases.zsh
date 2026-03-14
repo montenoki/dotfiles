@@ -1,6 +1,3 @@
-# 设置默认编辑器
-export EDITOR="nvim"
-
 # 命令替换
 alias cat="bat"
 alias du="dust"
