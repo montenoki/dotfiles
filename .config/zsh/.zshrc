@@ -2,8 +2,8 @@
 # 交互式 Shell 配置
 # ============================================================================
 
-# 确保环境变量已加载（非登录 shell）
-[[ -z "$XDG_CONFIG_HOME" ]] && source "$ZDOTDIR/environment.zsh"
+source "$ZDOTDIR/environment.zsh"
+source "$ZDOTDIR/tools.zsh"
 
 # ============================================================================
 # 插件管理器 (Znap)
