@@ -1,6 +1,9 @@
 # ============================================================================
 # XDG 基础目录规范
 # ============================================================================
+(( ${+_ENV_LOADED} )) && return
+typeset -g _ENV_LOADED=1
+
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -113,8 +116,6 @@ if [[ -f "$HOME/.config/.env" ]]; then
         # 导出变量
         [[ -n "$key" ]] && export "$key=$value"
     done < "$HOME/.config/.env"
-else
-    echo "警告: 未找到 ~/.config/.env 文件" >&2
 fi
 
 # ============================================================================
