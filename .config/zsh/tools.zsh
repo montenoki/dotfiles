@@ -5,20 +5,20 @@
 (( ${+_TOOLS_LOADED} )) && return
 typeset -g _TOOLS_LOADED=1
 
-# Homebrew
+# Homebrew（包管理器）
 if [[ "$OSTYPE" == darwin* ]]; then
     [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-# NVM（Node Version Manager）
+# NVM（Node 版本管理器）
 if [[ -s "$NVM_DIR/nvm.sh" ]]; then
     source "$NVM_DIR/nvm.sh"
     [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 fi
 
-# Pyenv
+# Pyenv（Python 版本管理器）
 if command -v pyenv &>/dev/null; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
