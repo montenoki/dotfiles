@@ -12,9 +12,6 @@
 
 # ZSH
 !.zshenv
-!.zlogout
-!.zprofile
-!.zshrc
 
 # tmux
 !.tmux.conf
@@ -31,6 +28,10 @@
 
 !.config/zsh/
 !.config/zsh/*.zsh
+!.config/zsh/.zshrc
+!.config/zsh/.zprofile
+!.config/zsh/.zlogin
+!.config/zsh/.zlogout
 
 !.config/i3/
 !.config/i3/**

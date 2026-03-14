@@ -8,7 +8,6 @@ export XDG_DATA_HOME="$HOME/.local/share"
 # ============================================================================
 # Shell 配置目录
 # ============================================================================
-export ZSH_CONFIG="$XDG_CONFIG_HOME/zsh"
 export ZSH_CACHE="$XDG_CACHE_HOME/zsh"
 export PYENV_ROOT="$HOME/.pyenv"
 
@@ -73,27 +72,13 @@ path_add --append "/snap/bin"
 # 开发工具初始化
 # ============================================================================
 
-# Homebrew（Linux）
-if [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
-
 # Pyenv
 if [[ -d "$PYENV_ROOT/bin" ]]; then
     path_add --prepend "$PYENV_ROOT/bin"
 fi
 
-# Rust/Cargo
-if [[ -e "$HOME/.cargo/env" ]]; then
-    . "$HOME/.cargo/env"
-fi
-
 # Node Version Manager (nvm)
 export NVM_DIR="$HOME/.config/nvm"
-if [ -s "$NVM_DIR/nvm.sh" ]; then
-    . "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-fi
 
 # OpenCode
 path_add --prepend "$HOME/.opencode/bin"
@@ -106,9 +91,8 @@ path_add --prepend "$HOME/.local/bin"
 # 环境变量
 # ============================================================================
 
-# 当前日期
-DATE=$(date +%Y-%m-%d)
-export DATE
+# 编辑器
+export EDITOR="nvim"
 
 # ============================================================================
 # 加载本地环境配置文件

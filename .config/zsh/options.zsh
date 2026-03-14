@@ -37,3 +37,8 @@ setopt NO_CLOBBER
 # History ignore command that start with a space
 setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_DUPS
+
+# 历史记录配置
+HISTFILE="$HOME/.zsh/.zsh_history"
+HISTSIZE=10000
+SAVEHIST=100000
