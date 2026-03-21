@@ -2,8 +2,8 @@
 set -e
 
 # ===== 参数 =====
-MODE="$1"           # full / select
-SCREENSHOT_DIR="$2" # 从 sway 传入
+MODE="$1"
+SCREENSHOT_DIR="$2"
 
 if [[ -z "$MODE" || -z "$SCREENSHOT_DIR" ]]; then
     echo "Usage: $0 {full|select} <screenshot_dir>"
@@ -12,7 +12,6 @@ fi
 
 TIMESTAMP="$(date +'%Y-%m-%d_%H-%M-%S')"
 FILE="$SCREENSHOT_DIR/screenshot_${MODE}_$TIMESTAMP.png"
-
 mkdir -p "$SCREENSHOT_DIR"
 
 # ===== 截图 =====
@@ -21,12 +20,16 @@ full)
     grim "$FILE"
     ;;
 select)
-    grim -g "$(slurp)" "$FILE" || exit 0
+    REGION=$(slurp) || exit 0
+    grim -g "$REGION" "$FILE"
     ;;
 *)
     exit 1
     ;;
 esac
 
-# ===== 通知 =====
-[[ -f "$FILE" ]] && notify-send -i "$FILE" "📸 截图完成" "$(basename "$FILE")"
+# ===== 复制到剪贴板 + 通知 =====
+if [[ -f "$FILE" ]]; then
+    wl-copy <"$FILE"
+    notify-send -i "$FILE" "📸 截图完成" "$(basename "$FILE")"
+fi
