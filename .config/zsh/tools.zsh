@@ -12,7 +12,7 @@ fi
 # -- NVM (懒加载) --------------------------------------------------
 if [[ -s "$NVM_DIR/nvm.sh" ]]; then
     _nvm_load() {
-        unset -f nvm node npm npx yarn pnpm corepack
+        unset -f nvm node npm npx yarn pnpm corepack _nvm_load
         source "$NVM_DIR/nvm.sh"
         [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
     }
@@ -23,6 +23,16 @@ if [[ -s "$NVM_DIR/nvm.sh" ]]; then
     yarn()     { _nvm_load; yarn     "$@"; }
     pnpm()     { _nvm_load; pnpm     "$@"; }
     corepack() { _nvm_load; corepack "$@"; }
+    command_not_found_handler() {
+        if (( $+functions[_nvm_load] )); then
+            _nvm_load
+            if (( $+commands[$1] )); then
+                "$@"; return $?
+            fi
+        fi
+        echo "zsh: command not found: $1" >&2
+        return 127
+    }
 fi
 
 # -- Pyenv ---------------------------------------------------------
