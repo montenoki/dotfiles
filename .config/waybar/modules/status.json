@@ -26,5 +26,11 @@
             "<span color='#ff9977'>▇</span>", // orange
             "<span color='#dd532e'>█</span>"  // red
         ]
+    },
+    "network": {
+        "interval": 1,
+        "format-ethernet": "↑{bandwidthUpBytes} ↓{bandwidthDownBytes}",
+        "format-wifi": "↑{bandwidthUpBytes} ↓{bandwidthDownBytes}",
+        "format-disconnected": "断开"
     }
 }

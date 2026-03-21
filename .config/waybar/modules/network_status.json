@@ -1,0 +1,8 @@
+{
+    "network": {
+        "interval": 1,
+        "format-ethernet": "↑{bandwidthUpBytes} ↓{bandwidthDownBytes}",
+        "format-wifi": "↑{bandwidthUpBytes} ↓{bandwidthDownBytes}",
+        "format-disconnected": "断开"
+    }
+}
