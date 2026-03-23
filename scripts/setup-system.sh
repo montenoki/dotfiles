@@ -32,10 +32,15 @@ fi
 # Deploy files
 find "$ETC_SRC" -type f | while IFS= read -r src; do
     target="/etc${src#"$ETC_SRC"}"
+    # sudoers.d files must be 0440, otherwise sudo rejects them
+    case "$target" in
+        /etc/sudoers.d/*) mode=440 ;;
+        *)                mode=644 ;;
+    esac
     if [ "$DRY_RUN" -eq 1 ]; then
-        echo "[DRY-RUN] would install: $src -> $target"
+        echo "[DRY-RUN] would install (mode $mode): $src -> $target"
     else
-        install -Dm644 "$src" "$target"
+        install -Dm"$mode" "$src" "$target"
         echo "[COPY] $src -> $target"
     fi
 done

@@ -9,6 +9,7 @@
         "~/.config/waybar/modules/tray.json",
         "~/.config/waybar/modules/clock.json",
         "~/.config/waybar/modules/battery.json",
+        "~/.config/waybar/modules/battery_threshold.json",
         "~/.config/waybar/modules/power.json",
         "~/.config/waybar/modules/pulseaudio.json",
         "~/.config/waybar/modules/network.json",
@@ -28,6 +29,7 @@
         "idle_inhibitor",
         "pulseaudio",
         "battery",
+        "custom/battery-threshold",
         "power-profiles-daemon",
         "tray"
     ]

@@ -72,6 +72,18 @@ tooltip label {
     animation-direction: alternate;
 }
 
+#custom-battery-threshold {
+    padding: 0 8px;
+}
+
+#custom-battery-threshold.health {
+    color: #6abf69;
+}
+
+#custom-battery-threshold.full {
+    color: #5b9bd5;
+}
+
 #idle_inhibitor.activated {
     color: #f9c74f;
 }
