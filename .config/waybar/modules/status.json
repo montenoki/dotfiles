@@ -1,7 +1,7 @@
 {
     "cpu": {
         "interval": 1,
-        "format": "CPU{icon}",
+        "format": " {icon}",
         "format-icons": [
             "<span color='#69ff94'>▁</span>", // green
             "<span color='#2aa9ff'>▂</span>", // blue
@@ -15,7 +15,7 @@
     },
     "memory": {
         "interval": 15,
-        "format": "MEM{icon}",
+        "format": " {icon}",
         "format-icons": [
             "<span color='#69ff94'>▁</span>", // green
             "<span color='#2aa9ff'>▂</span>", // blue

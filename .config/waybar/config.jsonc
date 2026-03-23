@@ -16,6 +16,7 @@
     ],
     "modules-left": [
         "clock",
+        "network",
         "cpu",
         "memory",
         "sway/mode"
@@ -26,7 +27,6 @@
     "modules-right": [
         "idle_inhibitor",
         "pulseaudio",
-        "network",
         "battery",
         "power-profiles-daemon",
         "tray"

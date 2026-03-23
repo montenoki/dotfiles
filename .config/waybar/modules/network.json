@@ -1,12 +1,12 @@
 {
     "network": {
         "format": "{ifname}",
-        "format-wifi": "{essid} ({signalStrength}%)   ↑{bandwidthUpBytes} ↓{bandwidthDownBytes}",
-        "format-ethernet": "{ipaddr}/{cidr} 󰊗  ↑{bandwidthUpBytes} ↓{bandwidthDownBytes}",
+        "format-wifi": "󰖩 ↑{bandwidthUpBytes:>10} ↓{bandwidthDownBytes:>10}",
+        "format-ethernet": "{ipaddr}/{cidr} 󰊗  ↑{bandwidthUpBytes:>9} ↓{bandwidthDownBytes:>9}",
         "format-linked": "{ifname} (No IP) 󰊗",
         "format-disconnected": "Disconnected ⚠",
         "tooltip-format": "{ifname}",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)  \n{ipaddr}",
         "tooltip-format-ethernet": "{ifname} via {gwaddr} 󰊗 ",
         "tooltip-format-disconnected": "Disconnected",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",

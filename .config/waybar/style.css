@@ -71,3 +71,23 @@ tooltip label {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
+
+#idle_inhibitor.activated {
+    color: #f9c74f;
+}
+
+#idle_inhibitor.deactivated {
+    color: #6b7280;
+}
+
+#power-profiles-daemon.performance {
+    color: #ff6b35;
+}
+
+#power-profiles-daemon.balanced {
+    color: #5b9bd5;
+}
+
+#power-profiles-daemon.power-saver {
+    color: #6abf69;
+}

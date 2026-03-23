@@ -6,10 +6,13 @@
             "critical": 20
         },
 
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% 󱐌",
-        "format-plugged": "{capacity}% ",
+        "format": "{icon}",
+        "format-charging": "󱐌",
+        "format-plugged": "",
         "format-alt": "{time} {icon}",
+        "tooltip-format": "{capacity}% | {time}",
+        "tooltip-format-charging": "{capacity}% | 充电中",
+        "tooltip-format-plugged": "{capacity}% | 已充满",
 
         "format-icons": ["", "", "", "", ""]
     }
