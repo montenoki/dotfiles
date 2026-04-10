@@ -1,0 +1,7 @@
+[bell]
+animation = "EaseOutExpo"
+duration = 100
+color = "#ffffff"
+command = { program = "paplay", args = [
+    "/usr/share/sounds/freedesktop/stereo/bell.oga",
+] }

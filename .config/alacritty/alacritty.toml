@@ -1,5 +1,10 @@
 [general]
-import = ["~/.config/alacritty/fonts.toml", "~/.config/alacritty/window.toml"]
+import = [
+    "~/.config/alacritty/fonts.toml",
+    "~/.config/alacritty/window.toml",
+    "~/.config/alacritty/cursor.toml",
+    "~/.config/alacritty/bell.toml",
+]
 
 [[keyboard.bindings]]
 key = "Return"
