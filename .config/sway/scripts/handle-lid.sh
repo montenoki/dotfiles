@@ -27,9 +27,13 @@ case "$LS" in
         # 有外接屏：只关闭主屏
         swaymsg output "$LAPTOP_OUTPUT" disable
     else
-        # 没外接屏：锁屏，然后挂起
+        # 没外接屏：先锁屏
         swaylock -f -c 000000
-        systemctl suspend
+        # 插电则不休眠，电池则挂起省电
+        AC_ONLINE=$(cat /sys/class/power_supply/AC/online 2>/dev/null || echo 0)
+        if [ "$AC_ONLINE" != "1" ]; then
+            systemctl suspend
+        fi
     fi
     ;;
 *)

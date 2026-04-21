@@ -4,17 +4,25 @@
 
 pkill -x swayidle 2>/dev/null
 
-# 超时时间（秒）—— 插电时 x3
-T_LOCK=300       # 5 分钟后锁屏
-T_DPMS_OFF=600   # 10 分钟后关屏
-T_SUSPEND=1800   # 30 分钟后挂起
+# 电池时超时（秒）
+T_LOCK=300        # 5 分钟后锁屏
+T_DPMS_OFF=600    # 10 分钟后关屏
+T_SUSPEND=1800    # 30 分钟后挂起
+
+# 插电时超时（秒）
+T_LOCK_AC=900      # 15 分钟后锁屏
+T_DPMS_OFF_AC=1800 # 30 分钟后关屏
+# 插电时永不挂起
 
 # 检测是否插电（AC online = 1）
 AC_ONLINE=$(cat /sys/class/power_supply/AC/online 2>/dev/null || echo 0)
+
 if [ "$AC_ONLINE" = "1" ]; then
-    T_LOCK=$((T_LOCK * 3))
-    T_DPMS_OFF=$((T_DPMS_OFF * 3))
-    T_SUSPEND=$((T_SUSPEND * 3))
+    exec swayidle -w \
+        timeout $T_LOCK_AC     'swaylock -f -c 000000' \
+        timeout $T_DPMS_OFF_AC 'swaymsg "output * dpms off"' \
+        resume                 'swaymsg "output * dpms on"' \
+        before-sleep           'swaylock -f -c 000000'
 fi
 
 exec swayidle -w \
