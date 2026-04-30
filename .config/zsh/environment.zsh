@@ -75,6 +75,7 @@ _load_dotenv() {
 }
 
 _load_dotenv "$XDG_CONFIG_HOME/.env"
+_load_dotenv "$XDG_CONFIG_HOME/claude-code/provider.override.env"
 
 # -- Rust (Cargo) --------------------------------------------------
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"

@@ -46,3 +46,76 @@ fi
 
 # -- Zoxide -------------------------------------------------------
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
+
+# -- Claude Code provider switching --------------------------------
+use-deepseek() {
+    if [[ -z "$OPENROUTER_API_KEY" ]]; then
+        print -u2 "use-deepseek: OPENROUTER_API_KEY is not set"
+        return 1
+    fi
+
+    local config_dir="$XDG_CONFIG_HOME/claude-code"
+    local override_file="$config_dir/provider.override.env"
+
+    mkdir -p "$config_dir" || return 1
+
+    cat > "$override_file" <<EOF
+ANTHROPIC_BASE_URL=https://openrouter.ai/api
+ANTHROPIC_AUTH_TOKEN=${OPENROUTER_API_KEY}
+ANTHROPIC_API_KEY=
+ANTHROPIC_MODEL=deepseek/deepseek-chat
+ANTHROPIC_DEFAULT_SONNET_MODEL=deepseek/deepseek-chat
+ANTHROPIC_DEFAULT_OPUS_MODEL=deepseek/deepseek-r1
+ANTHROPIC_DEFAULT_HAIKU_MODEL=deepseek/deepseek-chat
+CLAUDE_CODE_SUBAGENT_MODEL=deepseek/deepseek-chat
+CLAUDE_CODE_PROVIDER=openrouter-deepseek
+EOF
+
+    chmod 600 "$override_file" || return 1
+
+    export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
+    export ANTHROPIC_AUTH_TOKEN="$OPENROUTER_API_KEY"
+    export ANTHROPIC_API_KEY=""
+    export ANTHROPIC_MODEL="deepseek/deepseek-chat"
+    export ANTHROPIC_DEFAULT_SONNET_MODEL="deepseek/deepseek-chat"
+    export ANTHROPIC_DEFAULT_OPUS_MODEL="deepseek/deepseek-r1"
+    export ANTHROPIC_DEFAULT_HAIKU_MODEL="deepseek/deepseek-chat"
+    export CLAUDE_CODE_SUBAGENT_MODEL="deepseek/deepseek-chat"
+    export CLAUDE_CODE_PROVIDER="openrouter-deepseek"
+
+    print "Switched to DeepSeek via OpenRouter. Reload or restart VSCode."
+}
+
+use-claude() {
+    local config_dir="$XDG_CONFIG_HOME/claude-code"
+    local override_file="$config_dir/provider.override.env"
+
+    rm -f "$override_file"
+
+    unset ANTHROPIC_BASE_URL
+    unset ANTHROPIC_AUTH_TOKEN
+    unset ANTHROPIC_MODEL
+    unset ANTHROPIC_DEFAULT_SONNET_MODEL
+    unset ANTHROPIC_DEFAULT_OPUS_MODEL
+    unset ANTHROPIC_DEFAULT_HAIKU_MODEL
+    unset CLAUDE_CODE_SUBAGENT_MODEL
+    unset CLAUDE_CODE_PROVIDER
+
+    _load_dotenv "$XDG_CONFIG_HOME/.env"
+
+    print "Restored default Claude. Reload or restart VSCode."
+}
+
+cc-status() {
+    local override_file="$XDG_CONFIG_HOME/claude-code/provider.override.env"
+
+    if [[ -f "$override_file" ]]; then
+        print "Provider: openrouter-deepseek (override active)"
+    else
+        print "Provider: default (official Claude)"
+    fi
+
+    print "Base URL: ${ANTHROPIC_BASE_URL:-official Anthropic}"
+    print "Model: ${ANTHROPIC_MODEL:-default}"
+    print "Override file: ${XDG_CONFIG_HOME}/claude-code/provider.override.env [$([[ -f "$override_file" ]] && print present || print absent)]"
+}
