@@ -63,11 +63,11 @@ use-deepseek() {
 ANTHROPIC_BASE_URL=https://openrouter.ai/api
 ANTHROPIC_AUTH_TOKEN=${OPENROUTER_API_KEY}
 ANTHROPIC_API_KEY=
-ANTHROPIC_MODEL=deepseek/deepseek-chat
-ANTHROPIC_DEFAULT_SONNET_MODEL=deepseek/deepseek-chat
-ANTHROPIC_DEFAULT_OPUS_MODEL=deepseek/deepseek-r1
-ANTHROPIC_DEFAULT_HAIKU_MODEL=deepseek/deepseek-chat
-CLAUDE_CODE_SUBAGENT_MODEL=deepseek/deepseek-chat
+ANTHROPIC_MODEL=deepseek/deepseek-v4-pro
+ANTHROPIC_DEFAULT_SONNET_MODEL=deepseek/deepseek-v4-pro
+ANTHROPIC_DEFAULT_OPUS_MODEL=deepseek/deepseek-v4-pro
+ANTHROPIC_DEFAULT_HAIKU_MODEL=deepseek/deepseek-v4-flash
+CLAUDE_CODE_SUBAGENT_MODEL=deepseek/deepseek-v4-flash
 CLAUDE_CODE_PROVIDER=openrouter-deepseek
 EOF
 
@@ -76,11 +76,11 @@ EOF
     export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
     export ANTHROPIC_AUTH_TOKEN="$OPENROUTER_API_KEY"
     export ANTHROPIC_API_KEY=""
-    export ANTHROPIC_MODEL="deepseek/deepseek-chat"
-    export ANTHROPIC_DEFAULT_SONNET_MODEL="deepseek/deepseek-chat"
-    export ANTHROPIC_DEFAULT_OPUS_MODEL="deepseek/deepseek-r1"
-    export ANTHROPIC_DEFAULT_HAIKU_MODEL="deepseek/deepseek-chat"
-    export CLAUDE_CODE_SUBAGENT_MODEL="deepseek/deepseek-chat"
+    export ANTHROPIC_MODEL="deepseek/deepseek-v4-pro"
+    export ANTHROPIC_DEFAULT_OPUS_MODEL="deepseek/deepseek-v4-pro"
+    export ANTHROPIC_DEFAULT_SONNET_MODEL="deepseek/deepseek-v4-pro"
+    export ANTHROPIC_DEFAULT_HAIKU_MODEL="deepseek/deepseek-v4-flash"
+    export CLAUDE_CODE_SUBAGENT_MODEL="deepseek/deepseek-v4-flash"
     export CLAUDE_CODE_PROVIDER="openrouter-deepseek"
 
     print "Switched to DeepSeek via OpenRouter. Reload or restart VSCode."
